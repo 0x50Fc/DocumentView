@@ -1,0 +1,29 @@
+
+layout {
+    element-class:DVLayoutElement;
+}
+
+canvas {
+    element-class:DVCanvasElement;
+    object-class:CALayer;
+}
+
+view {
+    element-class:DVViewElement;
+    object-class:UIView;
+}
+
+button {
+    element-class:DVViewElement;
+    object-class:UIButton;
+}
+
+document {
+    element-class:DVViewElement;
+    object-class:DVDocumentView;
+}
+
+text {
+    element-class:DVTextElement;
+    object-class:CALayer;
+}
