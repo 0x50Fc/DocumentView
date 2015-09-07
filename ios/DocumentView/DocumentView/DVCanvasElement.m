@@ -91,12 +91,5 @@
     [self drawInContext:ctx];
 }
 
--(void) bindLayer:(CALayer *) layer {
-    layer.borderColor = [[self borderColor] CGColor];
-    layer.borderWidth = [self borderWidth];
-    layer.masksToBounds = layer.borderWidth > 0;
-    layer.cornerRadius = [self borderRadius];
-    layer.backgroundColor = [[self backgroundColor] CGColor];
-}
 
 @end

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[DVDocumentView reloadData:keySet:]:DVDocumentView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[DVDocumentView reuseObjectElementClass:reuse:]:DVDocumentView.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[DVDocumentView elementObject:]:DVDocumentView.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "_elementObjects">
+            </PersistentString>
+            <PersistentString
+               value = "_dequeueReuseObjects">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "-[UIView(DVObjectElement) setObjectElement:]:DVViewElement.m">
+      </ContextState>
+      <ContextState
+         contextName = "-[DVObjectElement objectClass]:DVObjectElement.m">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

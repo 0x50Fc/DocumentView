@@ -7,7 +7,56 @@
 //
 
 #import "DVViewElement.h"
+#import "DVElement+Value.h"
+
+@implementation UIView (DVObjectElement)
+
+-(void) setObjectElement:(DVViewElement *)element {
+    self.layer.borderColor = [[element borderColor] CGColor];
+    self.layer.borderWidth = [element borderWidth];
+    self.layer.cornerRadius = [element borderRadius];
+    self.backgroundColor = [element backgroundColor];
+    self.clipsToBounds = [element clips];
+}
+
+@end
+
 
 @implementation DVViewElement
+
+-(Class) objectClass{
+    
+    Class v = [super objectClass];
+    
+    if(v != [UIView class] && ! [v isSubclassOfClass:[UIView class]]) {
+        return [UIView class];
+    }
+    
+    return v;
+}
+
+-(BOOL) isHidden{
+    return [self booleanValueForKey:@"hidden" defaultValue:NO] || ! [self booleanValueForKey:@"visable" defaultValue:YES];
+}
+
+-(double) borderRadius{
+    return [self doubleValueForKey:@"border-radius" defaultValue:0];
+}
+
+-(UIColor *) backgroundColor {
+    return [self colorValueForKey:@"background-color" defaultValue:nil];
+}
+
+-(UIColor *) borderColor{
+    return [self colorValueForKey:@"border-color" defaultValue:nil];
+}
+
+-(double) borderWidth{
+    return [self doubleValueForKey:@"border-width" defaultValue:0];
+}
+
+-(BOOL) clips {
+    return [self booleanValueForKey:@"clips" defaultValue:YES];
+}
 
 @end

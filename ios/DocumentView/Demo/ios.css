@@ -21,6 +21,7 @@ button {
 document {
     element-class:DVViewElement;
     object-class:DVDocumentView;
+    object-detach-children:true;
 }
 
 text {

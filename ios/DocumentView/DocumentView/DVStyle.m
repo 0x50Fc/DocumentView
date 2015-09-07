@@ -21,7 +21,11 @@
 
 // 获取属性
 -(NSString *) attr:(NSString *) key {
-    return [_attributes valueForKey:key];
+    NSString * v =  [_attributes valueForKey:key];
+    if(v == nil && _parent != nil){
+        return [_parent attr:key];
+    }
+    return v;
 }
 
 // 设置属性 value==nil 时删除属性

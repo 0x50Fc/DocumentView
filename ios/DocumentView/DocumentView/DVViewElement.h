@@ -15,5 +15,10 @@
 @property(nonatomic,readonly) UIColor * backgroundColor;
 @property(nonatomic,readonly) UIColor * borderColor;
 @property(nonatomic,readonly) double borderWidth;
+@property(nonatomic,readonly) BOOL clips;
+
+@end
+
+@interface UIView (DVObjectElement)
 
 @end

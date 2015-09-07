@@ -15,23 +15,37 @@
 @property(nonatomic,assign) Class objectClass;
 @property(nonatomic,strong) id object;
 
--(void) remove;
+-(void) hide;
+
+-(void) show;
 
 @end
 
 @implementation DVDocumentViewReuseObject
 
--(void) remove {
+-(void) hide {
     if([_object isKindOfClass:[CALayer class]]) {
         [(CALayer *) _object setDelegate:nil];
-        [(CALayer *) _object removeFromSuperlayer];
+        [(CALayer *) _object setHidden:YES];
     }
     else if([_object isKindOfClass:[DVDocumentView class]]) {
         [(DVDocumentView *) _object setElement:nil];
-        [(DVDocumentView *) _object removeFromSuperview];
+        [(DVDocumentView *) _object setHidden:YES];
     }
     else if([_object isKindOfClass:[UIView class]]) {
-        [(DVDocumentView *) _object removeFromSuperview];
+        [(DVDocumentView *) _object setHidden:YES];
+    }
+}
+
+-(void) show {
+    if([_object isKindOfClass:[CALayer class]]) {
+        [(CALayer *) _object setHidden:NO];
+    }
+    else if([_object isKindOfClass:[DVDocumentView class]]) {
+        [(DVDocumentView *) _object setHidden:NO];
+    }
+    else if([_object isKindOfClass:[UIView class]]) {
+        [(DVDocumentView *) _object setHidden:NO];
     }
 }
 
@@ -63,7 +77,7 @@
         
         for (DVDocumentViewReuseObject * object in [_elementObjects allValues]) {
             [_dequeueReuseObjects addObject:object];
-            [object remove];
+            [object hide];
         }
         
         [_elementObjects removeAllObjects];
@@ -89,14 +103,36 @@
     
     NSMutableSet * keySet = [NSMutableSet setWithArray:[_elementObjects allKeys]];
     
-    [self reloadData:_element keySet:keySet];
+    DVElement * p = _element.firstChild;
     
+    CGRect rect = self.bounds;
+    
+    rect.origin = self.contentOffset;
+    
+    while (p) {
+        
+        if([p isKindOfClass:[DVLayoutElement class]]) {
+            
+            CGRect frame = [(DVLayoutElement *) p frame];
+            
+            if(CGRectIntersectsRect(rect, frame)) {
+                [self reloadData:p keySet:keySet];
+            }
+        }
+        else {
+            [self reloadData:p keySet:keySet];
+        }
+        
+        p = p.nextSibling;
+    }
+
     for (NSString * key in keySet) {
         DVDocumentViewReuseObject * object = [_elementObjects objectForKey:key];
         [_dequeueReuseObjects addObject:object];
-        [object remove];
+        [object hide];
         [_elementObjects removeObjectForKey:key];
     }
+    
 }
 
 -(void) reloadData:(DVElement *) element keySet:(NSMutableSet *)keySet {
@@ -126,7 +162,14 @@
     }
 }
 
--(DVDocumentViewReuseObject *) reuseObjectElementClass:(Class) elementClass reuse:(NSString *) reuse {
+-(void) setContentOffset:(CGPoint)contentOffset {
+    [super setContentOffset:contentOffset];
+    
+    [self reloadData];
+    
+}
+
+-(DVDocumentViewReuseObject *) reuseObjectClass:(Class) objectClass reuse:(NSString *) reuse {
     
     NSInteger i = 0;
     
@@ -134,7 +177,9 @@
         
         DVDocumentViewReuseObject * object = [_dequeueReuseObjects objectAtIndex:i];
         
-        if((reuse == object.reuse || [reuse isEqualToString:object.reuse]) && object.class == [CALayer class] ) {
+        if((reuse == object.reuse || [reuse isEqualToString:object.reuse]) && object.objectClass == objectClass ) {
+            
+            [object show];
             
             [_dequeueReuseObjects removeObjectAtIndex:i];
             
@@ -158,13 +203,26 @@
         
         if(object == nil) {
             
-            object = [self reuseObjectElementClass:[CALayer class] reuse:reuse];
+            Class objectClass = [(DVObjectElement *) element objectClass];
+            
+            object = [self reuseObjectClass:objectClass reuse:reuse];
             
             if(object == nil) {
+                
                 object = [[DVDocumentViewReuseObject alloc] init];
-                object.objectClass = [(DVObjectElement *) element objectClass];
+                object.objectClass = objectClass;
                 object.reuse = [element attr:@"reuse"];
-                object.object = [CALayer layer];
+                
+                if(object.objectClass == [CALayer class] || [object.objectClass isSubclassOfClass:[CALayer class]]) {
+                    object.object = [object.objectClass layer];
+                }
+                else if(object.objectClass == [UIView class] || [object.objectClass isSubclassOfClass:[UIView class]]) {
+                    object.object = [[object.objectClass alloc] initWithFrame:CGRectZero];
+                }
+                else {
+                    object.object = [[object.objectClass alloc] init];
+                }
+                
             }
             
             if(_elementObjects == nil){
@@ -178,6 +236,8 @@
             if([object.object isKindOfClass:[CALayer class]]) {
             
                 CALayer * layer = (CALayer *) object.object;
+                
+                layer.contentsScale = [[UIScreen mainScreen] scale];
                 
                 CALayer * player = self.layer;
                 CGRect frame = [(DVLayoutElement *) element frame];
@@ -214,7 +274,9 @@
                 layer.delegate = element;
                 layer.frame = frame;
                 
-                [player addSublayer:layer];
+                if(layer.superlayer != player) {
+                    [player addSublayer:layer];
+                }
                 
                 [layer setNeedsDisplay];
             }
@@ -252,7 +314,11 @@
                     }
                 }
                 
-                [pview addSubview:view];
+                [view setFrame:frame];
+                
+                if(view.superview != pview) {
+                    [pview addSubview:view];
+                }
                 
             }
             

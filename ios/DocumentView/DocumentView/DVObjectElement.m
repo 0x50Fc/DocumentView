@@ -24,7 +24,7 @@
 }
 
 -(BOOL) isDetachChildren {
-    return NO;
+    return [self booleanValueForKey:@"object-detach-children" defaultValue:NO];
 }
 
 @end
