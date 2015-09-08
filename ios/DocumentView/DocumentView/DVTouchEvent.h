@@ -18,6 +18,7 @@ enum DVTouchEventType {
 @property(nonatomic,assign) CGFloat touchX;
 @property(nonatomic,assign) CGFloat touchY;
 @property(nonatomic,assign) enum DVTouchEventType eventType;
+@property(nonatomic,strong) id object;
 
 +(id) touchEvent:(NSString *) touchId touchX:(CGFloat) touchX touchY:(CGFloat) touchY eventType:(enum DVTouchEventType) eventType element:(DVElement *) element;
 

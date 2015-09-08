@@ -381,6 +381,8 @@
         
         if(el) {
             
+            e.object = [[_elementObjects valueForKey:el.elementId] object];
+            
             if(_touchElements  == nil) {
                 _touchElements = [[NSMutableDictionary alloc] initWithCapacity:4];
             }
@@ -410,6 +412,8 @@
             
             DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeMoved element:_element];
             
+            e.object = [[_elementObjects valueForKey:el.elementId] object];
+            
             [DVElement sendEvent:e element:el];
             
         }
@@ -433,6 +437,8 @@
             
             DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeEnded element:_element];
             
+            e.object = [[_elementObjects valueForKey:el.elementId] object];
+            
             [DVElement sendEvent:e element:el];
             
         }
@@ -455,6 +461,8 @@
             CGPoint p = [touch locationInView:self];
             
             DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeCanceled element:_element];
+            
+            e.object = [[_elementObjects valueForKey:el.elementId] object];
             
             [DVElement sendEvent:e element:el];
             

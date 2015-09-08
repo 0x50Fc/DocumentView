@@ -13,11 +13,14 @@
 #import "NSString+TextLength.h"
 #import "VTRichImageElement.h"
 #import "VTRichLinkElement.h"
-
+#import "DVTouchEvent.h"
 
 @interface DVTextElement() {
-
+    NSMutableArray * _highlightedLayers;
 }
+
+@property(nonatomic,retain) id focusElement;
+@property(nonatomic,weak) CALayer * layer;
 
 @property(nonatomic,readonly) VTRich * rich;
 
@@ -238,6 +241,108 @@
 
 -(BOOL) isDetachChildren {
     return YES;
+}
+
+-(void) setHighlighted:(BOOL)highlighted{
+    [super setHighlighted:highlighted];
+    
+    if(highlighted && _focusElement && _layer){
+        
+        NSMutableArray * layers = nil;
+        
+        if(_highlightedLayers== nil){
+            _highlightedLayers = [[NSMutableArray alloc] initWithCapacity:4];
+        }
+        else{
+            layers = [NSMutableArray arrayWithArray:_highlightedLayers];
+            [_highlightedLayers removeAllObjects];
+        }
+        
+        NSArray * rects = [_rich elementRects:_focusElement withSize:self.frame.size];
+        
+        NSInteger index = 0;
+        
+        UIColor * actionColor = [self colorValueForKey:@"action-color" defaultValue:nil];
+        
+        if(actionColor == nil){
+            actionColor = [UIColor colorWithWhite:1.0f alpha:0.3f];
+        }
+
+        for(id rect in rects){
+            
+            CALayer * layer = index < [layers count] ? [layers objectAtIndex:index] : nil;
+            
+            if(layer == nil){
+                layer = [[CALayer alloc] init];
+                layer.backgroundColor = actionColor.CGColor;
+                layer.cornerRadius = 2;
+                layer.masksToBounds = YES;
+            }
+            
+            layer.frame = [rect CGRectValue];
+            
+            [_layer addSublayer:layer];
+            
+            [_highlightedLayers addObject:layer];
+            
+            index ++;
+            
+        }
+        
+        while(index < [layers count]){
+            [[layers objectAtIndex:index] removeFromSuperlayer];
+            index ++;
+        }
+        
+    }
+    else{
+        for(CALayer * layer in _highlightedLayers){
+            [layer removeFromSuperlayer];
+        }
+        [_highlightedLayers removeAllObjects];
+    }
+    
+}
+
+-(void) sendEvent:(DVEvent *)event {
+    
+    if([event isKindOfClass:[DVTouchEvent class]]) {
+        
+        switch ([(DVTouchEvent *) event eventType]) {
+            case DVTouchEventTypeBegin:
+            {
+                CGPoint p = [(DVTouchEvent *) event locationInElement:self];
+                
+                self.focusElement = [_rich elementByLocation:p withSize:self.frame.size];
+                
+                if( ! [_focusElement isKindOfClass:[VTRichLinkElement class]] ){
+                    self.focusElement = nil;
+                }
+                
+                self.layer = [(DVTouchEvent *) event object];
+                
+            }
+                break;
+            case DVTouchEventTypeEnded:
+            {
+                
+                if([self isHighlighted] && _focusElement && [_focusElement userInfo]) {
+                    [DVElement sendEvent:[DVActionEvent actionEvent:@"click" element:[_focusElement userInfo]] element:[_focusElement userInfo]];
+                }
+                
+            }
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
+    [super sendEvent:event];
+}
+
+-(BOOL) dispatchEvent:(DVEvent *)event{
+    return NO;
 }
 
 @end

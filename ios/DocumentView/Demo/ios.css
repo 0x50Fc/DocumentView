@@ -29,6 +29,7 @@ text {
     object-class:CALayer;
     background-color:clear;
     color:#333;
+    enabled:false;
 }
 
 img {
