@@ -35,7 +35,7 @@ static void DVDocument_XML_startElementSAXFunc (void *ctx,
     
     DVDocument_XML_parser * parser = (__bridge DVDocument_XML_parser *) ctx;
 
-    Class elementClass = [parser.document.styleSheet elementClass:[NSString stringWithFormat:@"* %s", name]];
+    Class elementClass = [parser.document.styleSheet elementClass:[NSArray arrayWithObjects:@"*",[NSString stringWithUTF8String:(char *) name], nil]];
     
     if(elementClass == nil) {
         elementClass = [DVElement class];

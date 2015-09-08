@@ -1,129 +1,73 @@
 
 <main>
-    <canvas width="100%" height="100%" background-color="#000000">
+    <canvas width="100%" height="100%">
         <canvas width="100%" height="44px" top="20px" background-color="#ffffff">
+            
             <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo</text>
+            <canvas width="100%" height="1px" top="auto" bottom="0px" background-color="#f2f2f2" />
+            
+            <img background-color="#e5e5e5" src="@logo.jpg" width="24px" height="24px" left="12px" top="auto" bottom="auto" />
         </canvas>
-        <document width="100%" height="100%-64px" top="64px" background-color="#00ffff" layout="flow">
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
+        <document width="100%" height="100%-64px" top="64px" background-color="#f4f4f4" layout="flow">
+            <document class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo3</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo4</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo5</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo6</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
+            <document class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo3</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo4</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo5</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo6</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
+            <document class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo3</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo4</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo5</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo6</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
+            <document class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo3</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo4</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo5</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo6</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
+            <document class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo3</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo4</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo5</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo6</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
+            <document class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo3</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo4</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo5</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo6</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
+            <document class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo3</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo4</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo5</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo6</text>
-            </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
+            <document class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo3</text>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo4</text>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo5</text>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
-            <document width="100%" height="44px" margin-top="12px" background-color="#ffffff">
-                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo6</text>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
+            </document>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
+            </document>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
+            </document>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
+            </document>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
+            </document>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
+            </document>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
+            </document>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
+            </document>
+            <document class="item" highlighted-class="item-hover">
+                <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
             </document>
         </document>
     </canvas>

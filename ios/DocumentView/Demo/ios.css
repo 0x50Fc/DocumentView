@@ -8,16 +8,6 @@ canvas {
     object-class:CALayer;
 }
 
-view {
-    element-class:DVViewElement;
-    object-class:UIView;
-}
-
-button {
-    element-class:DVViewElement;
-    object-class:UIButton;
-}
-
 document {
     element-class:DVViewElement;
     object-class:DVDocumentView;
@@ -27,4 +17,20 @@ document {
 text {
     element-class:DVTextElement;
     object-class:CALayer;
+}
+
+img {
+    element-class:DVImageElement;
+    object-class:CALayer;
+}
+
+.item {
+    width:100%;
+    height:64px;
+    margin-top:12px;
+    background-color:#ffffff;
+}
+
+.item-hover {
+    background-color:#ffff00;
 }

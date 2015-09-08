@@ -10,5 +10,8 @@
 
 @interface DVControlElement : DVLayoutElement
 
+@property(nonatomic,readonly,getter = isEnabled) BOOL enabled;
+@property(nonatomic,assign,getter = isHighlighted) BOOL highlighted;
+@property(nonatomic,readonly,getter = isSelected) BOOL selected;
 
 @end

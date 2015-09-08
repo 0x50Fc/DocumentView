@@ -12,6 +12,7 @@
 
 @interface DVElement() {
     NSMutableDictionary * _attributes;
+    BOOL _editableStyle;
 }
 
 @end
@@ -299,18 +300,35 @@
 
 -(DVStyle *) style {
     
+    if(_editableStyle) {
+        return nil;
+    }
+    
     if(_style == nil) {
+        _editableStyle = YES;
         _style = [[DVStyle alloc] init];
         _style.innerCSS = [self attr:@"style"];
+        _editableStyle = NO;
     }
     
     if(_document
         && (_style.parent == nil || _style.parent.version != _document.styleSheet.version) ) {
         
-        NSString * class = [self attr:@"class"];
+        _editableStyle = YES;
         
-        _style.parent = [_document.styleSheet selector:[NSString stringWithFormat:@"* %@ .%@", self.name, class ? class:@""]];
+        NSMutableArray * names = [NSMutableArray arrayWithObjects:@"*",self.name, nil];
         
+        NSString * className = [self className];
+        
+        for (NSString * n in [className componentsSeparatedByString:@" "]) {
+            if([n length]) {
+                [names addObject:[NSString stringWithFormat:@".%@",n]];
+            }
+        }
+        
+        _style.parent = [_document.styleSheet selector:names];
+        
+        _editableStyle = NO;
     }
     
     return _style;
@@ -345,6 +363,48 @@
     }
     
     return _elementId;
+}
+
++(DVElement *) dispatchEvent:(DVEvent *) event element:(DVElement *) element {
+    
+    if([element dispatchEvent:event]) {
+        
+        DVElement * p = element.lastChild, * r;
+        
+        while (p) {
+            
+            r = [DVElement dispatchEvent:event element:p];
+            
+            if(r) {
+                return r;
+            }
+            
+            p = p.prevSibling;
+        }
+        
+    }
+    
+    return element;
+}
+
+
++(void) sendEvent:(DVEvent *) event element:(DVElement *) element {
+    
+    [(DVElement *) element sendEvent:event];
+    
+    if(! event.cancelBubble){
+        if(element.parent) {
+            [DVElement sendEvent:event element:element.parent];
+        }
+        else {
+            [element.document sendEvent:event];
+        }
+    }
+    
+}
+
+-(NSString *) className {
+    return [self attr:@"class"];
 }
 
 @end

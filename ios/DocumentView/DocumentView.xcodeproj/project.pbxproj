@@ -24,8 +24,6 @@
 		113914DD1B9D5834006CF7EC /* DVEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 113914DB1B9D5834006CF7EC /* DVEvent.m */; };
 		113914E81B9D61C7006CF7EC /* DVLayoutElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 113914E61B9D61C7006CF7EC /* DVLayoutElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		113914E91B9D61C7006CF7EC /* DVLayoutElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 113914E71B9D61C7006CF7EC /* DVLayoutElement.m */; };
-		113914ED1B9D62DF006CF7EC /* DVEventElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 113914EB1B9D62DF006CF7EC /* DVEventElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		113914EE1B9D62DF006CF7EC /* DVEventElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 113914EC1B9D62DF006CF7EC /* DVEventElement.m */; };
 		113914F11B9D6F6E006CF7EC /* DVElement+Value.h in Headers */ = {isa = PBXBuildFile; fileRef = 113914EF1B9D6F6E006CF7EC /* DVElement+Value.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		113914F21B9D6F6E006CF7EC /* DVElement+Value.m in Sources */ = {isa = PBXBuildFile; fileRef = 113914F01B9D6F6E006CF7EC /* DVElement+Value.m */; };
 		113914F51B9D721D006CF7EC /* DVCanvasElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 113914F31B9D721D006CF7EC /* DVCanvasElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,16 +48,20 @@
 		113915441B9DA20A006CF7EC /* demo.xml in Resources */ = {isa = PBXBuildFile; fileRef = 113915431B9DA20A006CF7EC /* demo.xml */; };
 		113915471B9DA54D006CF7EC /* DVTextElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 113915451B9DA54D006CF7EC /* DVTextElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		113915481B9DA54D006CF7EC /* DVTextElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 113915461B9DA54D006CF7EC /* DVTextElement.m */; };
-		113915521B9DA779006CF7EC /* VTRich.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139154A1B9DA779006CF7EC /* VTRich.h */; };
+		113915521B9DA779006CF7EC /* VTRich.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139154A1B9DA779006CF7EC /* VTRich.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		113915531B9DA779006CF7EC /* VTRich.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139154B1B9DA779006CF7EC /* VTRich.m */; };
-		113915541B9DA779006CF7EC /* VTRichImageElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139154C1B9DA779006CF7EC /* VTRichImageElement.h */; };
+		113915541B9DA779006CF7EC /* VTRichImageElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139154C1B9DA779006CF7EC /* VTRichImageElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		113915551B9DA779006CF7EC /* VTRichImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139154D1B9DA779006CF7EC /* VTRichImageElement.m */; };
-		113915561B9DA779006CF7EC /* VTRichLinkElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139154E1B9DA779006CF7EC /* VTRichLinkElement.h */; };
+		113915561B9DA779006CF7EC /* VTRichLinkElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139154E1B9DA779006CF7EC /* VTRichLinkElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		113915571B9DA779006CF7EC /* VTRichLinkElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139154F1B9DA779006CF7EC /* VTRichLinkElement.m */; };
-		1139155C1B9DA885006CF7EC /* NSString+TextLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139155A1B9DA885006CF7EC /* NSString+TextLength.h */; };
+		1139155C1B9DA885006CF7EC /* NSString+TextLength.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139155A1B9DA885006CF7EC /* NSString+TextLength.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1139155D1B9DA885006CF7EC /* NSString+TextLength.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139155B1B9DA885006CF7EC /* NSString+TextLength.m */; };
-		113915601B9DA938006CF7EC /* DVImageElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139155E1B9DA938006CF7EC /* DVImageElement.h */; };
+		113915601B9DA938006CF7EC /* DVImageElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 1139155E1B9DA938006CF7EC /* DVImageElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		113915611B9DA938006CF7EC /* DVImageElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 1139155F1B9DA938006CF7EC /* DVImageElement.m */; };
+		1139156A1B9EA80E006CF7EC /* DVTouchEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 113915681B9EA80E006CF7EC /* DVTouchEvent.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1139156B1B9EA80E006CF7EC /* DVTouchEvent.m in Sources */ = {isa = PBXBuildFile; fileRef = 113915691B9EA80E006CF7EC /* DVTouchEvent.m */; };
+		1139156D1B9EB195006CF7EC /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1139156C1B9EB195006CF7EC /* logo.jpg */; };
+		1139156F1B9EB65A006CF7EC /* ef_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1139156E1B9EB65A006CF7EC /* ef_logo.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,8 +84,6 @@
 		113914DB1B9D5834006CF7EC /* DVEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVEvent.m; sourceTree = "<group>"; };
 		113914E61B9D61C7006CF7EC /* DVLayoutElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVLayoutElement.h; sourceTree = "<group>"; };
 		113914E71B9D61C7006CF7EC /* DVLayoutElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVLayoutElement.m; sourceTree = "<group>"; };
-		113914EB1B9D62DF006CF7EC /* DVEventElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVEventElement.h; sourceTree = "<group>"; };
-		113914EC1B9D62DF006CF7EC /* DVEventElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVEventElement.m; sourceTree = "<group>"; };
 		113914EF1B9D6F6E006CF7EC /* DVElement+Value.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVElement+Value.h"; sourceTree = "<group>"; };
 		113914F01B9D6F6E006CF7EC /* DVElement+Value.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVElement+Value.m"; sourceTree = "<group>"; };
 		113914F31B9D721D006CF7EC /* DVCanvasElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVCanvasElement.h; sourceTree = "<group>"; };
@@ -122,6 +122,10 @@
 		1139155B1B9DA885006CF7EC /* NSString+TextLength.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+TextLength.m"; sourceTree = "<group>"; };
 		1139155E1B9DA938006CF7EC /* DVImageElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVImageElement.h; sourceTree = "<group>"; };
 		1139155F1B9DA938006CF7EC /* DVImageElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVImageElement.m; sourceTree = "<group>"; };
+		113915681B9EA80E006CF7EC /* DVTouchEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTouchEvent.h; sourceTree = "<group>"; };
+		113915691B9EA80E006CF7EC /* DVTouchEvent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVTouchEvent.m; sourceTree = "<group>"; };
+		1139156C1B9EB195006CF7EC /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
+		1139156E1B9EB65A006CF7EC /* ef_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ef_logo.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,10 +175,10 @@
 				113914991B9D3425006CF7EC /* Supporting Files */,
 				113914DA1B9D5834006CF7EC /* DVEvent.h */,
 				113914DB1B9D5834006CF7EC /* DVEvent.m */,
+				113915681B9EA80E006CF7EC /* DVTouchEvent.h */,
+				113915691B9EA80E006CF7EC /* DVTouchEvent.m */,
 				113914B21B9D36AD006CF7EC /* DVElement.h */,
 				113914B31B9D36AD006CF7EC /* DVElement.m */,
-				113914EB1B9D62DF006CF7EC /* DVEventElement.h */,
-				113914EC1B9D62DF006CF7EC /* DVEventElement.m */,
 				113914E61B9D61C7006CF7EC /* DVLayoutElement.h */,
 				113914E71B9D61C7006CF7EC /* DVLayoutElement.m */,
 				113914F71B9D74F8006CF7EC /* DVControlElement.h */,
@@ -220,6 +224,8 @@
 		113915141B9D9880006CF7EC /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				1139156E1B9EB65A006CF7EC /* ef_logo.jpg */,
+				1139156C1B9EB195006CF7EC /* logo.jpg */,
 				113915191B9D9880006CF7EC /* AppDelegate.h */,
 				1139151A1B9D9880006CF7EC /* AppDelegate.m */,
 				1139151C1B9D9880006CF7EC /* ViewController.h */,
@@ -280,10 +286,10 @@
 				1139149C1B9D3425006CF7EC /* DocumentView.h in Headers */,
 				113914DC1B9D5834006CF7EC /* DVEvent.h in Headers */,
 				113915541B9DA779006CF7EC /* VTRichImageElement.h in Headers */,
+				1139156A1B9EA80E006CF7EC /* DVTouchEvent.h in Headers */,
 				113914D41B9D5218006CF7EC /* DVStyle.h in Headers */,
 				113914E81B9D61C7006CF7EC /* DVLayoutElement.h in Headers */,
 				113914F51B9D721D006CF7EC /* DVCanvasElement.h in Headers */,
-				113914ED1B9D62DF006CF7EC /* DVEventElement.h in Headers */,
 				113914D01B9D4A86006CF7EC /* DVDocument+XML.h in Headers */,
 				113914B41B9D36AD006CF7EC /* DVElement.h in Headers */,
 				113915051B9D800F006CF7EC /* DVDocumentView.h in Headers */,
@@ -385,7 +391,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1139156F1B9EB65A006CF7EC /* ef_logo.jpg in Resources */,
 				113915211B9D9880006CF7EC /* Main.storyboard in Resources */,
+				1139156D1B9EB195006CF7EC /* logo.jpg in Resources */,
 				113915421B9D994E006CF7EC /* ios.css in Resources */,
 				113915261B9D9880006CF7EC /* LaunchScreen.xib in Resources */,
 				113915231B9D9880006CF7EC /* Images.xcassets in Resources */,
@@ -402,7 +410,6 @@
 			files = (
 				113915571B9DA779006CF7EC /* VTRichLinkElement.m in Sources */,
 				113914B91B9D43DA006CF7EC /* DVDocument.m in Sources */,
-				113914EE1B9D62DF006CF7EC /* DVEventElement.m in Sources */,
 				113915611B9DA938006CF7EC /* DVImageElement.m in Sources */,
 				113914FA1B9D74F8006CF7EC /* DVControlElement.m in Sources */,
 				113915481B9DA54D006CF7EC /* DVTextElement.m in Sources */,
@@ -412,6 +419,7 @@
 				113914DD1B9D5834006CF7EC /* DVEvent.m in Sources */,
 				113914F21B9D6F6E006CF7EC /* DVElement+Value.m in Sources */,
 				113915061B9D800F006CF7EC /* DVDocumentView.m in Sources */,
+				1139156B1B9EA80E006CF7EC /* DVTouchEvent.m in Sources */,
 				1139150A1B9D90A0006CF7EC /* DVViewElement.m in Sources */,
 				113914D11B9D4A86006CF7EC /* DVDocument+XML.m in Sources */,
 				113914D51B9D5218006CF7EC /* DVStyle.m in Sources */,

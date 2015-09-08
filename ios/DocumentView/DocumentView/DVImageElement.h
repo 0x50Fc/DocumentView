@@ -10,6 +10,8 @@
 
 @interface DVImageElement : DVCanvasElement
 
+@property(nonatomic,readonly,getter=isLoading) BOOL loading;
+@property(nonatomic,strong,readonly) NSString * src;
 @property(nonatomic,strong) UIImage * image;
 
 @end

@@ -8,6 +8,13 @@
 
 #import <DocumentView/DVControlElement.h>
 
+// 重新绑定对象 object
+
+@interface DVObjectEvent : DVEvent
+
++(id) objectEvent:(DVElement *) element;
+
+@end
 
 @interface DVObjectElement : DVControlElement
 

@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 hailong.org. All rights reserved.
 //
 
-#import <DocumentView/DVEventElement.h>
+#import <DocumentView/DVElement.h>
 
 @interface DVDocumentView : UIScrollView<DVEventDelegate>
 

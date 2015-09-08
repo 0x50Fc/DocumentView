@@ -59,4 +59,19 @@
     return [self booleanValueForKey:@"clips" defaultValue:YES];
 }
 
+-(id) attr:(NSString *) key value:(NSString *) value{
+    [super attr:key value:value];
+    
+    if([key isEqualToString:@"hidden"]
+       || [key isEqualToString:@"visabled"]
+       || [key isEqualToString:@"border-radius"]
+       || [key isEqualToString:@"background-color"]
+       || [key isEqualToString:@"border-color"]
+       || [key isEqualToString:@"border-width"]
+       || [key isEqualToString:@"clips"]){
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+    }
+    return self;
+}
+
 @end

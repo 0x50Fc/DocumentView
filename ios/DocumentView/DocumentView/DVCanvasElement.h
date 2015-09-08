@@ -8,12 +8,6 @@
 
 #import <DocumentView/DVObjectElement.h>
 
-// 重新绘制 canvas
-@interface DVCanvasEvent : DVEvent
-
-+(id) canvasEvent:(DVElement *) element;
-
-@end
 
 @interface DVCanvasElement : DVObjectElement
 
@@ -22,6 +16,9 @@
 @property(nonatomic,readonly) UIColor * backgroundColor;
 @property(nonatomic,readonly) UIColor * borderColor;
 @property(nonatomic,readonly) double borderWidth;
+@property(nonatomic,readonly,getter=isNeedsDisplay) BOOL needsDisplay;
+@property(nonatomic,readonly) id contents;
+@property(nonatomic,readonly) BOOL clips;
 
 -(void) drawInContext:(CGContextRef) context;
 

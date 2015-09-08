@@ -15,23 +15,13 @@
 -(void) setObjectElement:(DVCanvasElement *)element {
     self.borderColor = [[element borderColor] CGColor];
     self.borderWidth = [element borderWidth];
-    self.masksToBounds = self.borderWidth > 0;
+    self.masksToBounds = [element clips];
     self.cornerRadius = [element borderRadius];
     self.backgroundColor = [[element backgroundColor] CGColor];
-}
-
-@end
-
-@implementation DVCanvasEvent
-
-+(id) canvasEvent:(DVElement *)element {
-    
-    DVCanvasEvent * event = [[DVCanvasEvent alloc] init];
-    
-    event.name = @"canvas";
-    event.element = element;
-    
-    return event;
+    self.contents = [element contents];
+    if([element isNeedsDisplay]) {
+        [self setNeedsDisplay];
+    }
 }
 
 @end
@@ -77,8 +67,9 @@
        || [key isEqualToString:@"border-radius"]
        || [key isEqualToString:@"background-color"]
        || [key isEqualToString:@"border-color"]
-       || [key isEqualToString:@"border-width"]){
-        [DVEventElement sendEvent:[DVCanvasEvent canvasEvent:self] element:self];
+       || [key isEqualToString:@"border-width"]
+       || [key isEqualToString:@"clips"]){
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
     }
     return self;
 }
@@ -91,5 +82,12 @@
     [self drawInContext:ctx];
 }
 
+-(BOOL) isNeedsDisplay {
+    return YES;
+}
+
+-(BOOL) clips {
+    return [self booleanValueForKey:@"clips" defaultValue:NO];
+}
 
 @end

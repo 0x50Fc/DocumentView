@@ -9,6 +9,19 @@
 #import "DVObjectElement.h"
 #import "DVElement+Value.h"
 
+@implementation DVObjectEvent
+
++(id) objectEvent:(DVElement *) element {
+    
+    DVObjectEvent * event = [[DVObjectEvent alloc] init];
+    
+    event.name = @"object";
+    event.target = element;
+    
+    return event;
+}
+
+@end
 @implementation DVObjectElement
 
 -(Class) objectClass {
@@ -19,12 +32,29 @@
     return nil;
 }
 
--(void) bindObject:(id)object {
-    [object setObjectElement:self];
-}
-
 -(BOOL) isDetachChildren {
     return [self booleanValueForKey:@"object-detach-children" defaultValue:NO];
+}
+
+-(void) setHighlighted:(BOOL)highlighted {
+    [super setHighlighted:highlighted];
+    [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+}
+
+-(id) attr:(NSString *) key value:(NSString *) value{
+    [super attr:key value:value];
+    
+    if([key isEqualToString:@"enabled"]
+       || [key isEqualToString:@"disabled"]
+       || [key isEqualToString:@"selected"]
+       || [key isEqualToString:@"class"]
+       || [key isEqualToString:@"disabled-class"]
+       || [key isEqualToString:@"highlighted-class"]
+       || [key isEqualToString:@"selected-class"]){
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+    }
+    
+    return self;
 }
 
 @end

@@ -6,19 +6,19 @@
 //  Copyright (c) 2015年 hailong.org. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import <DocumentView/DVEvent.h>
 
 // 节点
 
 @class DVDocument;
 @class DVStyle;
-@interface DVElement : NSObject<NSCoding,NSCopying>
+@interface DVElement : DVEventDispatcher<NSCoding,NSCopying>
 
 @property(nonatomic,strong) NSString * elementId;               // 节点ID
 @property(nonatomic,strong) NSString * name;           // 节点名
 @property(nonatomic,strong) NSString * textContent;             // 文本内容
 @property(nonatomic,copy,readonly) NSArray * keys;              // 属性键值
-@property(nonatomic,strong,readonly) DVStyle * style;           // 样式
+@property(nonatomic,strong) DVStyle * style;           // 样式
 @property(nonatomic,weak) DVDocument * document;       // 文档
 @property(nonatomic,weak,readonly) DVElement * parent;          // 父级节点
 @property(nonatomic,strong,readonly) DVElement * nextSibling;   // 下级兄弟节点
@@ -26,6 +26,7 @@
 @property(nonatomic,strong,readonly) DVElement * firstChild;    // 第一个子节点
 @property(nonatomic,strong,readonly) DVElement * lastChild;     // 最后一个子节点
 @property(nonatomic,copy,readonly) NSArray * children;          // 所有子节点
+@property(nonatomic,strong,readonly) NSString * className;      // 样式类名
 
 // 创建节点
 -(id) initWithName:(NSString *) name attributes:(NSDictionary *) attributes;
@@ -61,5 +62,10 @@
 -(id) remove;
 
 -(id) elementByClass:(Class) elementClass;
+
++(DVElement *) dispatchEvent:(DVEvent *) event element:(DVElement *) element;
+
++(void) sendEvent:(DVEvent *)event element:(DVElement *) element;
+
 
 @end

@@ -13,9 +13,9 @@
 
 @property(nonatomic,assign) NSUInteger version;                 // 版本
 
--(DVStyle *) selector:(NSString *) styleName;                   // 获取样式对象
+-(DVStyle *) selector:(NSArray *) names;                   // 获取样式对象
 
--(Class) elementClass:(NSString *) styleName;                   // 获取节点类
+-(Class) elementClass:(NSArray *) names;                   // 获取节点类
 
 -(void) addStyle:(NSString *) name key:(NSString *) key value:(NSString *) value;
 

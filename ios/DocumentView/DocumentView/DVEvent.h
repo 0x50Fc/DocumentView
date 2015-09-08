@@ -9,29 +9,39 @@
 #import <UIKit/UIKit.h>
 
 // 事件
-@class DVElement;
+@class DVEventDispatcher;
 
 @interface DVEvent : NSObject
 
 @property(nonatomic,strong) NSString * name;            // 事件名称
-@property(nonatomic,strong) DVElement * element;        // 节点
+@property(nonatomic,strong) DVEventDispatcher * target; // 目标
 @property(nonatomic,assign) BOOL cancelBubble;          // 取消向上级节点发送事件
 
 @end
 
-enum DVTouchEventType {
-    DVTouchEventTypeBegin,DVTouchEventTypeMove,DVTouchEventTypeEnd,DVTouchEventTypeCanceled
-};
 
-@interface DVTouchEvent : DVEvent
+typedef BOOL (^ DVEventFunction )(DVEvent * event);
 
-@property(nonatomic,strong) NSString * touchId;
-@property(nonatomic,assign) CGFloat touchX;
-@property(nonatomic,assign) CGFloat touchY;
-@property(nonatomic,assign) enum DVTouchEventType eventType;
+@protocol DVEventDelegate <NSObject>
 
-+(id) touchEvent:(NSString *) touchId touchX:(CGFloat) touchX touchY:(CGFloat) touchY eventType:(enum DVTouchEventType) eventType element:(DVElement *) element;
+@optional
 
--(CGPoint) locationInElement:(DVElement *) element;
+-(BOOL) dispatcher:(DVEventDispatcher *) dispatcher event:(DVEvent *) event;
+
+@end
+
+@interface DVEventDispatcher : NSObject
+
+-(BOOL) dispatchEvent:(DVEvent *) event;        // 分配事件从父亲到子 返回 NO 表示中止分发
+
+-(void) sendEvent:(DVEvent *) event;            // 发送事件从子到父
+
+-(void) bind:(NSString *) name fn:(DVEventFunction) fn;     // 绑定事件
+
+-(void) unbind:(NSString *) name fn:(DVEventFunction) fn;   // 解绑事件
+
+-(void) bind:(NSString *) name delegate:(id<DVEventDelegate>) delegate;     // 绑定事件
+
+-(void) unbind:(NSString *) name delegate:(id<DVEventDelegate>) delegate;   // 解绑事件
 
 @end

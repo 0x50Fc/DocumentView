@@ -12,7 +12,7 @@
 #import <DocumentView/DVStyleSheet.h>
 
 // 文档
-@interface DVDocument : NSObject
+@interface DVDocument : DVEventDispatcher
 
 @property(nonatomic,strong,readonly) DVStyleSheet * styleSheet;      // 样式表
 @property(nonatomic,strong) DVElement * rootElement;                 // 根节点

@@ -75,13 +75,13 @@
     _version ++;
 }
 
--(DVStyle *) selector:(NSString *) styleName {
+-(DVStyle *) selector:(NSArray *) names {
     
     DVStyle * style = [[DVStyle alloc] init];
     
     style.version = _version;
    
-    for(NSString * n in [styleName componentsSeparatedByString:@" "]) {
+    for(NSString * n in names) {
         NSDictionary * data = [_styles valueForKey:n];
         for (NSString * key in [data allKeys]) {
             [style attr:key value:[data valueForKey:key] important:YES];
@@ -91,9 +91,9 @@
     return style;
 }
 
--(Class) elementClass:(NSString *) styleName {
+-(Class) elementClass:(NSArray *) names {
     
-    for(NSString * n in [styleName componentsSeparatedByString:@" "]) {
+    for(NSString * n in names) {
         NSDictionary * data = [_styles valueForKey:n];
         NSString * v = [data valueForKey:@"element-class"];
         if(v) {

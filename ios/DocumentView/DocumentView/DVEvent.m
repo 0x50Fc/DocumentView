@@ -13,40 +13,132 @@
 
 @end
 
-@implementation DVTouchEvent
+@interface DVEventFunctionObject : NSObject
 
-+(id) touchEvent:(NSString *) touchId touchX:(CGFloat) touchX touchY:(CGFloat) touchY eventType:(enum DVTouchEventType) eventType element:(DVElement *) element {
-    
-    DVTouchEvent * event = [[DVTouchEvent alloc] init];
-    
-    event.touchId = touchId;
-    event.touchX = touchX;
-    event.touchY = touchY;
-    event.element = element;
-    event.eventType = eventType;
-    
-    return event;
-}
+@property(nonatomic,strong) NSString * name;
+@property(nonatomic,copy) DVEventFunction fn;
+@property(nonatomic,weak) id delegate;
 
--(CGPoint) locationInElement:(DVElement *) element {
-    
-    if(element == nil || element == self.element) {
-        return CGPointMake(_touchX, _touchY);
-    }
-    
-    if([element isKindOfClass:[DVLayoutElement class]]) {
-        
-        CGPoint p = [self locationInElement:element.parent];
-        
-        CGRect frame = [(DVLayoutElement *) element frame];
-        
-        return CGPointMake(p.x - frame.origin.x, p.y - frame.origin.y);
-        
-    }
-    else {
-        return [self locationInElement:element.parent];
-    }
-    
+@end
+
+@implementation DVEventFunctionObject
+
+@end
+
+@interface DVEventDispatcher() {
+    NSMutableArray * _functionObjects;
 }
 
 @end
+
+
+@implementation DVEventDispatcher
+
+-(BOOL) dispatchEvent:(DVEvent *) event {
+    return YES;
+}
+
+-(void) sendEvent:(DVEvent *) event {
+    
+    if(_functionObjects && event.name ){
+        
+        for (DVEventFunctionObject * fn in [NSArray arrayWithArray:_functionObjects]) {
+            
+            if([fn.name hasPrefix:event.name]) {
+                
+                if(fn.fn) {
+                    if( ! fn.fn(event) ) {
+                        break;
+                    }
+                }
+                else if([fn.delegate respondsToSelector:@selector(dispatcher:event:)]) {
+                    if( ! [fn.delegate dispatcher:self event:event] ) {
+                        break;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+-(void) bind:(NSString *) name fn:(DVEventFunction) fn {
+    
+    DVEventFunctionObject * object = [[DVEventFunctionObject alloc] init];
+    object.name = name;
+    object.fn = fn;
+    
+    if(_functionObjects == nil) {
+        _functionObjects = [[NSMutableArray alloc] initWithCapacity:4];
+    }
+    
+    [_functionObjects addObject:object];
+    
+}
+
+-(void) unbind:(NSString *) name fn:(DVEventFunction) fn {
+    
+    if(name == nil && fn == nil) {
+        [_functionObjects removeAllObjects];
+    }
+    else {
+        
+        NSInteger i = 0;
+        
+        while(i < [_functionObjects count]) {
+            
+            DVEventFunctionObject * object = [_functionObjects objectAtIndex:i];
+            
+            if((name == nil || [object.name hasPrefix:name]) && (fn == nil || fn == object.fn)) {
+                [_functionObjects removeObjectAtIndex:i];
+                continue;
+            }
+            
+            i ++;
+        }
+        
+    }
+}
+
+-(void) bind:(NSString *) name delegate:(id<DVEventDelegate>) delegate {
+    
+    DVEventFunctionObject * object = [[DVEventFunctionObject alloc] init];
+    object.name = name;
+    object.delegate = delegate;
+    
+    if(_functionObjects == nil) {
+        _functionObjects = [[NSMutableArray alloc] initWithCapacity:4];
+    }
+    
+    [_functionObjects addObject:object];
+    
+}
+
+-(void) unbind:(NSString *) name delegate:(id<DVEventDelegate>) delegate {
+    
+    if(name == nil && delegate == nil) {
+        [_functionObjects removeAllObjects];
+    }
+    else {
+        
+        NSInteger i = 0;
+        
+        while(i < [_functionObjects count]) {
+            
+            DVEventFunctionObject * object = [_functionObjects objectAtIndex:i];
+            
+            if((name == nil || [object.name hasPrefix:name]) && (delegate == nil || delegate == object.delegate)) {
+                [_functionObjects removeObjectAtIndex:i];
+                continue;
+            }
+            
+            i ++;
+        }
+        
+    }
+}
+
+
+@end
+
+

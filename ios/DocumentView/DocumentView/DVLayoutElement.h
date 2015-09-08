@@ -6,14 +6,14 @@
 //  Copyright (c) 2015年 hailong.org. All rights reserved.
 //
 
-#import <DocumentView/DVEventElement.h>
+#import <DocumentView/DVElement.h>
 
 
 @class DVLayoutElement;
 
 
 // 布局节点
-@interface DVLayoutElement : DVEventElement
+@interface DVLayoutElement : DVElement
 
 @property(nonatomic,assign) CGRect frame;
 @property(nonatomic,assign) CGSize contentSize;
