@@ -28,6 +28,14 @@ enum DVElementEventType {
 
 @end
 
+@interface DVActionEvent : DVEvent
+
+@property(nonatomic,strong) NSString * action;
+
++(id) actionEvent:(NSString *) action element:(DVElement *) element;
+
+@end
+
 @interface DVElement : DVEventDispatcher<NSCoding,NSCopying>
 
 @property(nonatomic,strong) NSString * elementId;               // 节点ID

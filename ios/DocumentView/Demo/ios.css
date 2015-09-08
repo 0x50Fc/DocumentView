@@ -14,23 +14,22 @@ view {
     object-detach-children:true;
 }
 
+page {
+    element-class:DVViewElement;
+    object-class:DVDocumentView;
+    object-detach-children:true;
+    paging-enabled:true;
+    layout:flow-x;
+}
+
 text {
     element-class:DVTextElement;
     object-class:CALayer;
+    background-color:clear;
+    color:#333;
 }
 
 img {
     element-class:DVImageElement;
     object-class:CALayer;
-}
-
-.item {
-    width:100%;
-    height:64px;
-    margin-top:12px;
-    background-color:#ffffff;
-}
-
-.item-hover {
-    background-color:#ffff00;
 }

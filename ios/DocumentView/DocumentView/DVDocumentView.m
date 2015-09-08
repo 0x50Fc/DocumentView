@@ -9,6 +9,7 @@
 #import "DVDocumentView.h"
 #import "DVCanvasElement.h"
 #import "DVTouchEvent.h"
+#import "DVElement+Value.h"
 
 @interface DVDocumentViewReuseObject : NSObject
 
@@ -64,6 +65,12 @@
 
 @implementation DVDocumentView
 
+-(id) init {
+    if ((self = [super init])) {
+        
+    }
+    return self;
+}
 -(void) dealloc{
     [_element unbind:nil delegate:self];
 }
@@ -114,7 +121,10 @@
     
     while (p) {
         
-        if([p isKindOfClass:[DVLayoutElement class]]) {
+        if([p isKindOfClass:[DVObjectElement class]] && [(DVObjectElement *)p reuse] == nil) {
+            [self reloadData:p keySet:keySet];
+        }
+        else if([p isKindOfClass:[DVLayoutElement class]]) {
             
             CGRect frame = [(DVLayoutElement *) p frame];
             
@@ -200,7 +210,7 @@
     if([element isKindOfClass:[DVObjectElement class]]) {
         
         NSString * elementId = [element elementId];
-        NSString * reuse = [element attr:@"reuse"];
+        NSString * reuse = [(DVObjectElement *) element reuse];
         
         DVDocumentViewReuseObject * object = [_elementObjects objectForKey:elementId];
         
@@ -214,7 +224,7 @@
                 
                 object = [[DVDocumentViewReuseObject alloc] init];
                 object.objectClass = objectClass;
-                object.reuse = [element attr:@"reuse"];
+                object.reuse = reuse;
                 
                 if(object.objectClass == [CALayer class] || [object.objectClass isSubclassOfClass:[CALayer class]]) {
                     object.object = [object.objectClass layer];
@@ -327,6 +337,8 @@
             if([object.object isKindOfClass:[DVDocumentView class]]) {
                 [(DVDocumentView *)object.object setElement:element];
             }
+            
+            [DVElement sendEvent:[DVActionEvent actionEvent:@"visible" element:element] element:element];
             
         }
         
@@ -460,5 +472,11 @@
     }
     
 }
+
+-(void) setObjectElement:(DVObjectElement *)element {
+    [super setObjectElement:element];
+    self.pagingEnabled = [element booleanValueForKey:@"paging-enabled" defaultValue:NO];
+}
+
 
 @end

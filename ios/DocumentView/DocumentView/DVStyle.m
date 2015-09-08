@@ -21,10 +21,13 @@
 
 // 获取属性
 -(NSString *) attr:(NSString *) key {
+    
     NSString * v =  [_attributes valueForKey:key];
+    
     if(v == nil && _parent != nil){
-        return [_parent attr:key];
+        v = [_parent attr:key];
     }
+    
     return v;
 }
 

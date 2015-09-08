@@ -35,9 +35,6 @@
     
     if([event isKindOfClass:[DVTouchEvent class]]) {
         
-
-        
-        
         switch ([(DVTouchEvent *) event eventType]) {
             case DVTouchEventTypeBegin:
             case DVTouchEventTypeMoved:
@@ -51,7 +48,16 @@
                 [self setHighlighted:CGRectContainsPoint(rect, p)];
             }
                 break;
+            case DVTouchEventTypeEnded:
+            {
                 
+                if([self isHighlighted]) {
+                    [DVElement sendEvent:[DVActionEvent actionEvent:@"click" element:self] element:self];
+                }
+                
+                [self setHighlighted:NO];
+                break;
+            }
             default:
                 [self setHighlighted:NO];
                 break;

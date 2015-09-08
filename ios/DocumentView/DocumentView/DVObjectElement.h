@@ -19,7 +19,8 @@
 @interface DVObjectElement : DVControlElement
 
 @property(nonatomic,readonly) Class objectClass;
-@property(nonatomic,readonly,getter= isDetachChildren) BOOL detachChildren;  // 托管子节点
+@property(nonatomic,readonly,getter = isDetachChildren) BOOL detachChildren;  // 托管子节点
+@property(nonatomic,readonly) NSString * reuse;                             // 重用 nil 时不重用
 
 @end
 

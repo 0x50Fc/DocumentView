@@ -27,6 +27,8 @@
     
     [_document.styleSheet addCSS:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"ios" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil]];
     
+    [_document.styleSheet addCSS:[NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"demo" ofType:@"css"] encoding:NSUTF8StringEncoding error:nil]];
+    
     [_document setRootElement:[_document elementWithXMLFile:[[NSBundle mainBundle] pathForResource:@"demo" ofType:@"xml"]]];
     
     

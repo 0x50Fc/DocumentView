@@ -12,4 +12,6 @@
 
 @property(nonatomic,strong) DVElement * element;
 
+-(void) reloadData;
+
 @end

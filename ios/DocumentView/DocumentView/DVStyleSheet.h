@@ -25,4 +25,6 @@
 
 -(void) clear;
 
+-(DVStyle *) style:(NSString *) name;                      
+
 @end

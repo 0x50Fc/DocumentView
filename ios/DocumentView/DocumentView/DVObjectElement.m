@@ -66,6 +66,17 @@
     }
 }
 
+-(NSString *) reuse {
+    
+    NSString * v = [self stringValueForKey:@"reuse" defaultValue:nil];
+    
+    if([v isEqualToString:@""]) {
+        return nil;
+    }
+    
+    return v;
+}
+
 @end
 
 

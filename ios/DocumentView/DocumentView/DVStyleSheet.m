@@ -10,6 +10,7 @@
 
 @interface DVStyleSheet() {
     NSMutableDictionary * _styles;
+    NSMutableDictionary * _stylesByName;
 }
 
 @end
@@ -102,6 +103,33 @@
     }
     
     return nil;
+}
+
+-(DVStyle *) style:(NSString *) name {
+    
+    DVStyle * style = [_stylesByName objectForKey:name];
+    
+    if(style == nil || style.version != _version) {
+        
+        style = [[DVStyle alloc] init];
+        
+        style.version = _version;
+        
+        NSDictionary * data = [_styles valueForKey:name];
+        
+        for (NSString * key in [data allKeys]) {
+            [style attr:key value:[data valueForKey:key] important:YES];
+        }
+        
+        if(_stylesByName == nil) {
+            _stylesByName = [[NSMutableDictionary alloc] initWithCapacity:4];
+        }
+        
+        [_stylesByName setValue:style forKey:name];
+    }
+    
+    return style;
+    
 }
 
 @end

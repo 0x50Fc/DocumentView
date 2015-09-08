@@ -10,6 +10,7 @@
 #import "DVDocument.h"
 #import "DVStyle.h"
 
+
 @implementation DVElementEvent
 
 
@@ -19,6 +20,21 @@
     event.target = target;
     event.element = element;
     event.eventType = eventType;
+    return event;
+}
+
+@end
+
+@implementation DVActionEvent
+
++(id) actionEvent:(NSString *)action element:(DVElement *)element {
+    
+    DVActionEvent * event = [[DVActionEvent alloc] init];
+    
+    event.name = @"action";
+    event.action = action;
+    event.target = element;
+    
     return event;
 }
 
@@ -114,13 +130,10 @@
 // 设置属性 value==nil 时删除属性
 -(id) attr:(NSString *) key value:(NSString *) value {
     
-    if([@"style" isEqualToString:key]) {
+    if([@"style" isEqualToString:key] || [@"class" isEqualToString:key]) {
         _style = nil;
     }
-    else if([@"class" isEqualToString:key]) {
-        _style.parent = nil;
-    }
-    
+
     if(value == nil) {
         [_attributes removeObjectForKey:key];
     }
@@ -314,7 +327,6 @@
     _nextSibling = nil;
     _prevSibling = nil;
     _document = nil;
-    _style.parent = nil;
     
     if(p){
         [DVElement sendEvent:[DVElementEvent elementEvent:p eventType:DVElementEventTypeRemove element:self] element:p];
@@ -330,16 +342,11 @@
     }
     
     if(_style == nil) {
-        _editableStyle = YES;
-        _style = [[DVStyle alloc] init];
-        _style.innerCSS = [self attr:@"style"];
-        _editableStyle = NO;
-    }
-    
-    if(_document
-        && (_style.parent == nil || _style.parent.version != _document.styleSheet.version) ) {
         
         _editableStyle = YES;
+        
+        _style = [[DVStyle alloc] init];
+        _style.innerCSS = [self attr:@"style"];
         
         NSMutableArray * names = [NSMutableArray arrayWithObjects:@"*",self.name, nil];
         
@@ -351,8 +358,10 @@
             }
         }
         
-        _style.parent = [_document.styleSheet selector:names];
-        
+        if([names count]) {
+            _style.parent = [_document.styleSheet selector:names];
+        }
+
         _editableStyle = NO;
     }
     
@@ -431,5 +440,6 @@
 -(NSString *) className {
     return [self attr:@"class"];
 }
+
 
 @end

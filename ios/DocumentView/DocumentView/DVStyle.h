@@ -10,6 +10,9 @@
 
 // 样式
 
+@class DVStyle;
+
+
 @interface DVStyle : NSObject
 
 @property(nonatomic,assign) NSUInteger version;                 // 版本
