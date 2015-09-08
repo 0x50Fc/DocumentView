@@ -52,6 +52,10 @@
 
 -(void) addCSS:(NSString *) cssContent {
     
+    NSRange r = {0, [cssContent length]};
+    
+    cssContent = [cssContent stringByReplacingOccurrencesOfString:@"\\/\\*.*\\*\\/" withString:@"" options:NSRegularExpressionSearch range:r];
+    
     NSArray * items = [cssContent componentsSeparatedByString:@"}"];
     
     for (NSString * item in items) {
