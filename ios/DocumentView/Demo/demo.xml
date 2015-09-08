@@ -8,67 +8,67 @@
             
             <img background-color="#e5e5e5" src="@logo.jpg" width="24px" height="24px" left="12px" top="auto" bottom="auto" />
         </canvas>
-        <document width="100%" height="100%-64px" top="64px" background-color="#f4f4f4" layout="flow">
-            <document class="item" highlighted-class="item-hover">
+        <view width="100%" height="100%-64px" top="64px" background-color="#f4f4f4" layout="flow">
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-            <document class="item" highlighted-class="item-hover">
+            </view>
+            <view class="item" highlighted-class="item-hover">
                 <text width="200px" height="auto" top="auto" bottom="auto" left="auto" right="auto" color="#333333" text-align="center" font="bold 18px">Demo2</text>
-            </document>
-        </document>
+            </view>
+        </view>
     </canvas>
 </main>

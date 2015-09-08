@@ -301,4 +301,13 @@
     
 }
 
+-(void) sendEvent:(DVEvent *)event {
+    
+    if([event isKindOfClass:[DVElementEvent class]]) {
+        _layouted = NO;
+    }
+    
+    [super sendEvent:event];
+}
+
 @end

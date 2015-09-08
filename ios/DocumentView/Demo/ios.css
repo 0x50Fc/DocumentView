@@ -8,7 +8,7 @@ canvas {
     object-class:CALayer;
 }
 
-document {
+view {
     element-class:DVViewElement;
     object-class:DVDocumentView;
     object-detach-children:true;

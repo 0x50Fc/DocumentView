@@ -57,6 +57,15 @@
     return self;
 }
 
+-(void) setFrame:(CGRect)frame {
+    CGRect r = [self frame];
+    [super setFrame:frame];
+    
+    if(! CGRectEqualToRect(r, frame)) {
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+    }
+}
+
 @end
 
 

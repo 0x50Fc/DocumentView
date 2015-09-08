@@ -171,8 +171,8 @@
 			isa = PBXGroup;
 			children = (
 				113915491B9DA768006CF7EC /* Rich */,
-				1139149B1B9D3425006CF7EC /* DocumentView.h */,
 				113914991B9D3425006CF7EC /* Supporting Files */,
+				1139149B1B9D3425006CF7EC /* DocumentView.h */,
 				113914DA1B9D5834006CF7EC /* DVEvent.h */,
 				113914DB1B9D5834006CF7EC /* DVEvent.m */,
 				113915681B9EA80E006CF7EC /* DVTouchEvent.h */,

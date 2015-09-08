@@ -10,6 +10,20 @@
 #import "DVDocument.h"
 #import "DVStyle.h"
 
+@implementation DVElementEvent
+
+
++(id) elementEvent:(DVElement *) target eventType:(enum DVElementEventType) eventType element:(DVElement *) element {
+    DVElementEvent * event = [[DVElementEvent alloc] init];
+    event.name = @"element";
+    event.target = target;
+    event.element = element;
+    event.eventType = eventType;
+    return event;
+}
+
+@end
+
 @interface DVElement() {
     NSMutableDictionary * _attributes;
     BOOL _editableStyle;
@@ -163,6 +177,8 @@
     element->_document = _document;
     element->_parent = self;
     
+    [DVElement sendEvent:[DVElementEvent elementEvent:self eventType:DVElementEventTypeAppend element:element] element:self];
+    
     return self;
 }
 
@@ -203,6 +219,8 @@
             element->_nextSibling = self;
             _prevSibling = element;
         }
+        
+        [DVElement sendEvent:[DVElementEvent elementEvent:self eventType:DVElementEventTypeBefore element:element] element:self];
         
     }
     
@@ -247,6 +265,7 @@
             _nextSibling = element;
         }
         
+        [DVElement sendEvent:[DVElementEvent elementEvent:self eventType:DVElementEventTypeAfter element:element] element:self];
     }
 
     return self;
@@ -266,6 +285,8 @@
 
 // 从父级节点中移除
 -(id) remove {
+    
+    DVElement * p = _parent;
     
     if(_prevSibling) {
         
@@ -294,6 +315,10 @@
     _prevSibling = nil;
     _document = nil;
     _style.parent = nil;
+    
+    if(p){
+        [DVElement sendEvent:[DVElementEvent elementEvent:p eventType:DVElementEventTypeRemove element:self] element:p];
+    }
     
     return self;
 }

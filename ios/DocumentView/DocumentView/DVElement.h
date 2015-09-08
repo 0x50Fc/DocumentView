@@ -12,6 +12,22 @@
 
 @class DVDocument;
 @class DVStyle;
+@class DVElement;
+
+enum DVElementEventType {
+    DVElementEventTypeAppend,DVElementEventTypeBefore,DVElementEventTypeAfter,DVElementEventTypeRemove
+};
+
+// 节点时间 element
+@interface DVElementEvent : DVEvent
+
+@property(nonatomic,assign) enum DVElementEventType eventType;
+@property(nonatomic,strong) DVElement * element;
+
++(id) elementEvent:(DVElement *) target eventType:(enum DVElementEventType) eventType element:(DVElement *) element;
+
+@end
+
 @interface DVElement : DVEventDispatcher<NSCoding,NSCopying>
 
 @property(nonatomic,strong) NSString * elementId;               // 节点ID

@@ -86,6 +86,7 @@
         [_element unbind:nil delegate:self];
         _element = element;
         [_element bind:@"object" delegate:self];
+        [_element bind:@"element" delegate:self];
         
         _layoutElement = [element elementByClass:[DVLayoutElement class]];
         
@@ -347,6 +348,10 @@
         
     }
     
+    if([event isKindOfClass:[DVElementEvent class]]) {
+        [self setNeedsLayout];
+    }
+    
     return YES;
 }
 
@@ -446,6 +451,14 @@
     }
     
     [super touchesCancelled:touches withEvent:event];
+}
+
+- (void)layoutSubviews {
+    
+    if(! [_layoutElement isLayouted]) {
+        [_layoutElement layout:self.bounds.size];
+    }
+    
 }
 
 @end
