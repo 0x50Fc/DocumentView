@@ -486,5 +486,20 @@
     self.pagingEnabled = [element booleanValueForKey:@"paging-enabled" defaultValue:NO];
 }
 
+-(void) sizeToFit {
+    
+    CGRect r = [self frame];
+    
+    CGRect f = [_layoutElement frame];
+    CGSize size = [_layoutElement contentSize];
+    
+    size.width = MAX(size.width, f.size.width);
+    size.height = MAX(size.height, f.size.height);
+    
+    r.size = size;
+    
+    [self setFrame:r];
+    
+}
 
 @end

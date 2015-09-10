@@ -12,3 +12,6 @@
 #import <DocumentView/DVElement.h>
 #import <DocumentView/DVDocument+XML.h>
 #import <DocumentView/DVDocument+HTML.h>
+#import <DocumentView/DVElement+Value.h>
+#import <DocumentView/DVLayoutElement.h>
+#import <DocumentView/DVObjectElement.h>

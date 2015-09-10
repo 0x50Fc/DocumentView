@@ -177,6 +177,8 @@
     
     [element remove];
     
+    [element setDocument:_document];
+    
     if(_lastChild) {
         _lastChild->_nextSibling = element;
         element->_prevSibling = _lastChild;
@@ -187,7 +189,6 @@
         _lastChild = element;
     }
     
-    element->_document = _document;
     element->_parent = self;
     
     [DVElement sendEvent:[DVElementEvent elementEvent:self eventType:DVElementEventTypeAppend element:element] element:self];
@@ -218,7 +219,7 @@
     
     if(_parent) {
         
-        element->_document = _document;
+        [element setDocument:_document];
         element->_parent = _parent;
 
         if(_prevSibling) {
@@ -263,7 +264,7 @@
 
     if(_parent) {
         
-        element->_document = _document;
+        [element setDocument:_document];
         element->_parent = _parent;
         
         if(_nextSibling) {
@@ -326,7 +327,7 @@
     _parent = nil;
     _nextSibling = nil;
     _prevSibling = nil;
-    _document = nil;
+    [self setDocument:nil];
     
     if(p){
         [DVElement sendEvent:[DVElementEvent elementEvent:p eventType:DVElementEventTypeRemove element:self] element:p];
@@ -397,6 +398,17 @@
     }
     
     return _elementId;
+}
+
+-(void) setDocument:(DVDocument *)document {
+    if(_document != document) {
+        _document = document;
+        DVElement * p = self.firstChild;
+        while(p) {
+            [p setDocument:document];
+            p = p.nextSibling;
+        }
+    }
 }
 
 +(DVElement *) dispatchEvent:(DVEvent *) event element:(DVElement *) element {

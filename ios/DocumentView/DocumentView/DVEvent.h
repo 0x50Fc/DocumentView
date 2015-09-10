@@ -17,18 +17,19 @@
 @property(nonatomic,strong) DVEventDispatcher * target; // 目标
 @property(nonatomic,assign) BOOL cancelBubble;          // 取消向上级节点发送事件
 
++(id) eventWithName:(NSString *) name target:(DVEventDispatcher *) target;
+
 @end
 
 
 typedef BOOL (^ DVEventFunction )(DVEvent * event);
 
-@protocol DVEventDelegate <NSObject>
-
-@optional
+@interface NSObject(DVEvent)
 
 -(BOOL) dispatcher:(DVEventDispatcher *) dispatcher event:(DVEvent *) event;
 
 @end
+
 
 @interface DVEventDispatcher : NSObject
 
@@ -40,8 +41,8 @@ typedef BOOL (^ DVEventFunction )(DVEvent * event);
 
 -(void) unbind:(NSString *) name fn:(DVEventFunction) fn;   // 解绑事件
 
--(void) bind:(NSString *) name delegate:(id<DVEventDelegate>) delegate;     // 绑定事件
+-(void) bind:(NSString *) name delegate:(id) delegate;     // 绑定事件
 
--(void) unbind:(NSString *) name delegate:(id<DVEventDelegate>) delegate;   // 解绑事件
+-(void) unbind:(NSString *) name delegate:(id) delegate;   // 解绑事件
 
 @end

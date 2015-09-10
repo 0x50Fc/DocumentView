@@ -9,7 +9,22 @@
 #import "DVEvent.h"
 #import "DVLayoutElement.h"
 
+@implementation NSObject(DVEvent)
+
+-(BOOL) dispatcher:(DVEventDispatcher *)dispatcher event:(DVEvent *)event {
+    return YES;
+}
+
+@end
+
 @implementation DVEvent
+
++(id) eventWithName:(NSString *) name target:(DVEventDispatcher *) target {
+    DVEvent * event = [[DVEvent alloc] init];
+    event.name = name;
+    event.target = target;
+    return event;
+}
 
 @end
 
@@ -100,7 +115,7 @@
     }
 }
 
--(void) bind:(NSString *) name delegate:(id<DVEventDelegate>) delegate {
+-(void) bind:(NSString *) name delegate:(id) delegate {
     
     DVEventFunctionObject * object = [[DVEventFunctionObject alloc] init];
     object.name = name;
@@ -114,7 +129,7 @@
     
 }
 
--(void) unbind:(NSString *) name delegate:(id<DVEventDelegate>) delegate {
+-(void) unbind:(NSString *) name delegate:(id) delegate {
     
     if(name == nil && delegate == nil) {
         [_functionObjects removeAllObjects];

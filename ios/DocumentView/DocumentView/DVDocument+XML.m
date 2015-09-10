@@ -34,12 +34,6 @@ static void DVDocument_XML_startElementSAXFunc (void *ctx,
                                          const xmlChar **atts){
     
     DVDocument_XML_parser * parser = (__bridge DVDocument_XML_parser *) ctx;
-
-    Class elementClass = [parser.document.styleSheet elementClass:[NSArray arrayWithObjects:@"*",[NSString stringWithUTF8String:(char *) name], nil]];
-    
-    if(elementClass == nil) {
-        elementClass = [DVElement class];
-    }
     
     const xmlChar ** pattrs = atts;
     
@@ -60,9 +54,7 @@ static void DVDocument_XML_startElementSAXFunc (void *ctx,
         
     }
     
-    DVElement * el = [[elementClass alloc] initWithName:[NSString stringWithUTF8String:(char *) name] attributes:attrs];
-    
-    el.document = parser.document;
+    DVElement * el = [parser.document elementWithName:[NSString stringWithUTF8String:(char *) name] attributes:attrs elementId:nil];
     
     if(parser.element == nil) {
         parser.element = el;

@@ -8,7 +8,7 @@
 
 #import <DocumentView/DVElement.h>
 
-@interface DVDocumentView : UIScrollView<DVEventDelegate>
+@interface DVDocumentView : UIScrollView
 
 @property(nonatomic,strong) DVElement * element;
 

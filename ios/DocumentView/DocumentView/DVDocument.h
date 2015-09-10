@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import <DocumentView/DVElement.h>
 #import <DocumentView/DVStyleSheet.h>
 
@@ -18,5 +17,10 @@
 @property(nonatomic,strong) DVElement * rootElement;                 // 根节点
 
 -(NSString *) newElementId; // 生成新节点ID
+
+// 创建节点
+-(id) elementWithName:(NSString *) name attributes:(NSDictionary *) attributes elementId:(NSString *) elementId;
+
+-(DVElement *) elementById:(NSString *) elementId;
 
 @end
