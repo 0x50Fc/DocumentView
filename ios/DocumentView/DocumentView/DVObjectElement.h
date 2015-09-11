@@ -10,9 +10,18 @@
 
 // 重新绑定对象 object
 
+typedef NSUInteger DVObjectElementChangedType;
+
+enum {
+    DVObjectElementChangedCanvas = 1 << 0,
+    DVObjectElementChangedAnimation = 1 << 1,
+};
+
 @interface DVObjectEvent : DVEvent
 
-+(id) objectEvent:(DVElement *) element;
+@property(nonatomic,assign) DVObjectElementChangedType changedTypes;
+
++(id) objectEvent:(DVElement *) element changedTypes:(DVObjectElementChangedType) changedTypes;
 
 @end
 
@@ -26,6 +35,6 @@
 
 @interface NSObject (DVObjectElement)
 
--(void) setObjectElement:(DVObjectElement *) element isChanged:(BOOL) isChanged;
+-(void) setObjectElement:(DVObjectElement *) element changedTypes:(DVObjectElementChangedType) changedTypes;
 
 @end

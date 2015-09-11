@@ -13,7 +13,7 @@
 
 @implementation CALayer (DVObjectElement)
 
--(void) setObjectElement:(DVCanvasElement *)element isChanged:(BOOL)isChanged {
+-(void) setObjectElement:(DVCanvasElement *)element changedTypes:(DVObjectElementChangedType)changedTypes {
     
     self.borderColor = [[element borderColor] CGColor];
     self.borderWidth = [element borderWidth];
@@ -30,8 +30,10 @@
         [self setNeedsDisplay];
     }
     
-    [self removeAllAnimations];
-    
+    if(changedTypes & DVObjectElementChangedAnimation) {
+        [self removeAllAnimations];
+    }
+
     CATransform3D transform = CATransform3DIdentity;
     
     DVElement * p = element.firstChild;
@@ -41,7 +43,7 @@
         if([p isKindOfClass:[DVTransformElement class]]) {
             transform = [(DVTransformElement *) p transform:transform];
         }
-        else if( ! isChanged && [p isKindOfClass:[DVAnimationElement class]]) {
+        else if( (changedTypes & DVObjectElementChangedAnimation) && [p isKindOfClass:[DVAnimationElement class]]) {
             CABasicAnimation * anim = [(DVAnimationElement *) p animation];
             if(anim) {
                 [self addAnimation:anim forKey:anim.keyPath];
@@ -104,7 +106,7 @@
        || [key isEqualToString:@"border-color"]
        || [key isEqualToString:@"border-width"]
        || [key isEqualToString:@"clips"]){
-        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self changedTypes:DVObjectElementChangedCanvas] element:self];
     }
     return self;
 }

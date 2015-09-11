@@ -20,7 +20,7 @@
 @implementation DVEvent
 
 +(id) eventWithName:(NSString *) name target:(DVEventDispatcher *) target {
-    DVEvent * event = [[DVEvent alloc] init];
+    DVEvent * event = [[self alloc] init];
     event.name = name;
     event.target = target;
     return event;

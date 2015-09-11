@@ -11,5 +11,6 @@
 @interface DVElement (XML)
 
 @property(nonatomic,readonly) NSString * innerXML;
+@property(nonatomic,readonly) NSString * outerXML;
 
 @end

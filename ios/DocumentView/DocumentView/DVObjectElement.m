@@ -11,12 +11,13 @@
 
 @implementation DVObjectEvent
 
-+(id) objectEvent:(DVElement *) element {
++(id) objectEvent:(DVElement *) element changedTypes:(DVObjectElementChangedType)changedTypes {
     
     DVObjectEvent * event = [[DVObjectEvent alloc] init];
     
     event.name = @"object";
     event.target = element;
+    event.changedTypes = changedTypes;
     
     return event;
 }
@@ -38,7 +39,7 @@
 
 -(void) setHighlighted:(BOOL)highlighted {
     [super setHighlighted:highlighted];
-    [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+    [DVElement sendEvent:[DVObjectEvent objectEvent:self changedTypes:DVObjectElementChangedCanvas] element:self];
 }
 
 -(id) attr:(NSString *) key value:(NSString *) value{
@@ -51,7 +52,7 @@
        || [key isEqualToString:@"disabled-class"]
        || [key isEqualToString:@"highlighted-class"]
        || [key isEqualToString:@"selected-class"]){
-        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self changedTypes:DVObjectElementChangedCanvas] element:self];
     }
     
     return self;
@@ -62,7 +63,7 @@
     [super setFrame:frame];
     
     if(! CGRectEqualToRect(r, frame)) {
-        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self changedTypes:DVObjectElementChangedCanvas] element:self];
     }
 }
 
@@ -82,7 +83,7 @@
 
 @implementation NSObject (DVObjectElement)
 
--(void) setObjectElement:(DVObjectElement *)element isChanged:(BOOL)isChanged {
+-(void) setObjectElement:(DVObjectElement *)element changedTypes:(DVObjectElementChangedType)changedTypes {
     
 }
 

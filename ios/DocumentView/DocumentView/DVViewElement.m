@@ -13,7 +13,7 @@
 
 @implementation UIView (DVObjectElement)
 
--(void) setObjectElement:(DVViewElement *)element isChanged:(BOOL)isChanged {
+-(void) setObjectElement:(DVViewElement *)element changedTypes:(DVObjectElementChangedType)changedTypes{
     
     self.layer.borderColor = [[element borderColor] CGColor];
     self.layer.borderWidth = [element borderWidth];
@@ -21,7 +21,9 @@
     self.backgroundColor = [element backgroundColor];
     self.clipsToBounds = [element clips];
     
-    [self.layer removeAllAnimations];
+    if(changedTypes & DVObjectElementChangedAnimation) {
+        [self.layer removeAllAnimations];
+    }
     
     CATransform3D transform = CATransform3DIdentity;
     
@@ -32,7 +34,7 @@
         if([p isKindOfClass:[DVTransformElement class]]) {
             transform = [(DVTransformElement *) p transform:transform];
         }
-        else if(! isChanged && [p isKindOfClass:[DVAnimationElement class]]) {
+        else if((changedTypes & DVObjectElementChangedAnimation) && [p isKindOfClass:[DVAnimationElement class]]) {
             CABasicAnimation * anim = [(DVAnimationElement *) p animation];
             
             if(anim) {
@@ -96,7 +98,7 @@
        || [key isEqualToString:@"border-color"]
        || [key isEqualToString:@"border-width"]
        || [key isEqualToString:@"clips"]){
-        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self changedTypes:DVObjectElementChangedCanvas] element:self];
     }
     return self;
 }

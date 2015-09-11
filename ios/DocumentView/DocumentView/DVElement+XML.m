@@ -81,4 +81,20 @@ static void DVElement_XML_write(xmlTextWriterPtr ctx, DVElement * element) {
     
 }
 
+-(NSString *) outerXML {
+    
+    NSMutableData * data = [[NSMutableData alloc] initWithCapacity:32];
+    
+    xmlOutputBufferPtr buffer = xmlOutputBufferCreateIO(DVElement_XML_writer_xmlOutputWriteCallback, DVElement_XML_writer_xmlOutputCloseCallback, (__bridge void *)(data), xmlGetCharEncodingHandler(XML_CHAR_ENCODING_UTF8));
+    
+    xmlTextWriterPtr ctx = xmlNewTextWriter(buffer);
+    
+    DVElement_XML_write(ctx,self);
+    
+    xmlFreeTextWriter(ctx);
+    
+    return [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+
+}
+
 @end

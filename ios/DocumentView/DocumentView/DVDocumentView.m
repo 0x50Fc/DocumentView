@@ -329,7 +329,7 @@
                 
             }
             
-            [object.object setObjectElement:(DVObjectElement *) element isChanged:NO];
+            [object.object setObjectElement:(DVObjectElement *) element changedTypes:DVObjectElementChangedCanvas | DVObjectElementChangedAnimation];
             
             if([object.object isKindOfClass:[DVDocumentView class]]) {
                 [(DVDocumentView *)object.object setElement:element];
@@ -351,7 +351,7 @@
         
         DVDocumentViewReuseObject * object = [_elementObjects valueForKey:[(DVElement *) event.target elementId]];
         
-        [object.object setObjectElement:(DVObjectElement *) event.target isChanged:YES];
+        [object.object setObjectElement:(DVObjectElement *) event.target changedTypes:[(DVObjectEvent *)event changedTypes]];
         
         event.cancelBubble = YES;
         
@@ -483,8 +483,8 @@
 }
 
 
--(void) setObjectElement:(DVObjectElement *)element isChanged:(BOOL)isChanged {
-    [super setObjectElement:element isChanged:isChanged];
+-(void) setObjectElement:(DVObjectElement *)element changedTypes:(DVObjectElementChangedType)changedTypes{
+    [super setObjectElement:element changedTypes:changedTypes];
     self.pagingEnabled = [element booleanValueForKey:@"view-paging-enabled" defaultValue:NO];
     self.scrollEnabled = [element booleanValueForKey:@"view-scroll-enabled" defaultValue:NO];
     self.bounces = [element booleanValueForKey:@"view-bounces-enabled" defaultValue:NO];

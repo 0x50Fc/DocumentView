@@ -24,7 +24,7 @@
     
     if([key isEqualToString:@"src"]){
         self.image = nil;
-        [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+        [DVElement sendEvent:[DVObjectEvent objectEvent:self changedTypes:DVObjectElementChangedCanvas] element:self];
     }
     
     return self;
@@ -68,7 +68,7 @@
                                 
                                 self.image = image;
                                 
-                                [DVElement sendEvent:[DVObjectEvent objectEvent:self] element:self];
+                                [DVElement sendEvent:[DVObjectEvent objectEvent:self changedTypes:DVObjectElementChangedCanvas] element:self];
                             }
                             
                         });
