@@ -82,7 +82,7 @@
 
 @implementation NSObject (DVObjectElement)
 
--(void) setObjectElement:(DVObjectElement *)element {
+-(void) setObjectElement:(DVObjectElement *)element isChanged:(BOOL)isChanged {
     
 }
 

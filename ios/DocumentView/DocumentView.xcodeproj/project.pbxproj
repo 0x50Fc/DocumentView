@@ -63,6 +63,16 @@
 		1139156D1B9EB195006CF7EC /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1139156C1B9EB195006CF7EC /* logo.jpg */; };
 		1139156F1B9EB65A006CF7EC /* ef_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1139156E1B9EB65A006CF7EC /* ef_logo.jpg */; };
 		113915711B9EC281006CF7EC /* demo.css in Resources */ = {isa = PBXBuildFile; fileRef = 113915701B9EC281006CF7EC /* demo.css */; };
+		11AF5CA11BA29800002A8959 /* DVElement+XML.h in Headers */ = {isa = PBXBuildFile; fileRef = 11AF5C9F1BA29800002A8959 /* DVElement+XML.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11AF5CA21BA29800002A8959 /* DVElement+XML.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5CA01BA29800002A8959 /* DVElement+XML.m */; };
+		11AF5CA51BA29CDC002A8959 /* DVElement+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 11AF5CA31BA29CDC002A8959 /* DVElement+HTML.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11AF5CA61BA29CDC002A8959 /* DVElement+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5CA41BA29CDC002A8959 /* DVElement+HTML.m */; };
+		11AF5CA91BA2B149002A8959 /* UIView+Visible.h in Headers */ = {isa = PBXBuildFile; fileRef = 11AF5CA71BA2B149002A8959 /* UIView+Visible.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11AF5CAA1BA2B149002A8959 /* UIView+Visible.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5CA81BA2B149002A8959 /* UIView+Visible.m */; };
+		11AF5CBD1BA2D5ED002A8959 /* DVTransformElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 11AF5CBB1BA2D5ED002A8959 /* DVTransformElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11AF5CBE1BA2D5ED002A8959 /* DVTransformElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5CBC1BA2D5ED002A8959 /* DVTransformElement.m */; };
+		11AF5CC11BA2D87B002A8959 /* DVAnimationElement.h in Headers */ = {isa = PBXBuildFile; fileRef = 11AF5CBF1BA2D87B002A8959 /* DVAnimationElement.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		11AF5CC21BA2D87B002A8959 /* DVAnimationElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5CC01BA2D87B002A8959 /* DVAnimationElement.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -128,6 +138,16 @@
 		1139156C1B9EB195006CF7EC /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		1139156E1B9EB65A006CF7EC /* ef_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ef_logo.jpg; sourceTree = "<group>"; };
 		113915701B9EC281006CF7EC /* demo.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = demo.css; sourceTree = "<group>"; };
+		11AF5C9F1BA29800002A8959 /* DVElement+XML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVElement+XML.h"; sourceTree = "<group>"; };
+		11AF5CA01BA29800002A8959 /* DVElement+XML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVElement+XML.m"; sourceTree = "<group>"; };
+		11AF5CA31BA29CDC002A8959 /* DVElement+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVElement+HTML.h"; sourceTree = "<group>"; };
+		11AF5CA41BA29CDC002A8959 /* DVElement+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVElement+HTML.m"; sourceTree = "<group>"; };
+		11AF5CA71BA2B149002A8959 /* UIView+Visible.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Visible.h"; sourceTree = "<group>"; };
+		11AF5CA81BA2B149002A8959 /* UIView+Visible.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Visible.m"; sourceTree = "<group>"; };
+		11AF5CBB1BA2D5ED002A8959 /* DVTransformElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVTransformElement.h; sourceTree = "<group>"; };
+		11AF5CBC1BA2D5ED002A8959 /* DVTransformElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVTransformElement.m; sourceTree = "<group>"; };
+		11AF5CBF1BA2D87B002A8959 /* DVAnimationElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVAnimationElement.h; sourceTree = "<group>"; };
+		11AF5CC01BA2D87B002A8959 /* DVAnimationElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVAnimationElement.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +201,10 @@
 				113915691B9EA80E006CF7EC /* DVTouchEvent.m */,
 				113914B21B9D36AD006CF7EC /* DVElement.h */,
 				113914B31B9D36AD006CF7EC /* DVElement.m */,
+				11AF5CBB1BA2D5ED002A8959 /* DVTransformElement.h */,
+				11AF5CBC1BA2D5ED002A8959 /* DVTransformElement.m */,
+				11AF5CBF1BA2D87B002A8959 /* DVAnimationElement.h */,
+				11AF5CC01BA2D87B002A8959 /* DVAnimationElement.m */,
 				113914E61B9D61C7006CF7EC /* DVLayoutElement.h */,
 				113914E71B9D61C7006CF7EC /* DVLayoutElement.m */,
 				113914F71B9D74F8006CF7EC /* DVControlElement.h */,
@@ -205,12 +229,18 @@
 				113914C71B9D49F6006CF7EC /* DVDocument+HTML.m */,
 				113914CE1B9D4A86006CF7EC /* DVDocument+XML.h */,
 				113914CF1B9D4A86006CF7EC /* DVDocument+XML.m */,
+				11AF5C9F1BA29800002A8959 /* DVElement+XML.h */,
+				11AF5CA01BA29800002A8959 /* DVElement+XML.m */,
+				11AF5CA31BA29CDC002A8959 /* DVElement+HTML.h */,
+				11AF5CA41BA29CDC002A8959 /* DVElement+HTML.m */,
 				113914EF1B9D6F6E006CF7EC /* DVElement+Value.h */,
 				113914F01B9D6F6E006CF7EC /* DVElement+Value.m */,
 				113915031B9D800F006CF7EC /* DVDocumentView.h */,
 				113915041B9D800F006CF7EC /* DVDocumentView.m */,
 				1139155A1B9DA885006CF7EC /* NSString+TextLength.h */,
 				1139155B1B9DA885006CF7EC /* NSString+TextLength.m */,
+				11AF5CA71BA2B149002A8959 /* UIView+Visible.h */,
+				11AF5CA81BA2B149002A8959 /* UIView+Visible.m */,
 			);
 			path = DocumentView;
 			sourceTree = "<group>";
@@ -283,9 +313,14 @@
 			files = (
 				113914F11B9D6F6E006CF7EC /* DVElement+Value.h in Headers */,
 				113914C81B9D49F6006CF7EC /* DVDocument+HTML.h in Headers */,
+				11AF5CC11BA2D87B002A8959 /* DVAnimationElement.h in Headers */,
+				11AF5CA51BA29CDC002A8959 /* DVElement+HTML.h in Headers */,
 				113915521B9DA779006CF7EC /* VTRich.h in Headers */,
+				11AF5CBD1BA2D5ED002A8959 /* DVTransformElement.h in Headers */,
 				1139150D1B9D90FF006CF7EC /* DVObjectElement.h in Headers */,
 				113914BC1B9D492A006CF7EC /* DVStyleSheet.h in Headers */,
+				11AF5CA11BA29800002A8959 /* DVElement+XML.h in Headers */,
+				11AF5CA91BA2B149002A8959 /* UIView+Visible.h in Headers */,
 				1139149C1B9D3425006CF7EC /* DocumentView.h in Headers */,
 				113914DC1B9D5834006CF7EC /* DVEvent.h in Headers */,
 				113915541B9DA779006CF7EC /* VTRichImageElement.h in Headers */,
@@ -413,10 +448,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				113915571B9DA779006CF7EC /* VTRichLinkElement.m in Sources */,
+				11AF5CC21BA2D87B002A8959 /* DVAnimationElement.m in Sources */,
 				113914B91B9D43DA006CF7EC /* DVDocument.m in Sources */,
+				11AF5CBE1BA2D5ED002A8959 /* DVTransformElement.m in Sources */,
 				113915611B9DA938006CF7EC /* DVImageElement.m in Sources */,
 				113914FA1B9D74F8006CF7EC /* DVControlElement.m in Sources */,
 				113915481B9DA54D006CF7EC /* DVTextElement.m in Sources */,
+				11AF5CAA1BA2B149002A8959 /* UIView+Visible.m in Sources */,
 				113915531B9DA779006CF7EC /* VTRich.m in Sources */,
 				113914C91B9D49F6006CF7EC /* DVDocument+HTML.m in Sources */,
 				113915551B9DA779006CF7EC /* VTRichImageElement.m in Sources */,
@@ -425,9 +463,11 @@
 				113915061B9D800F006CF7EC /* DVDocumentView.m in Sources */,
 				1139156B1B9EA80E006CF7EC /* DVTouchEvent.m in Sources */,
 				1139150A1B9D90A0006CF7EC /* DVViewElement.m in Sources */,
+				11AF5CA61BA29CDC002A8959 /* DVElement+HTML.m in Sources */,
 				113914D11B9D4A86006CF7EC /* DVDocument+XML.m in Sources */,
 				113914D51B9D5218006CF7EC /* DVStyle.m in Sources */,
 				1139155D1B9DA885006CF7EC /* NSString+TextLength.m in Sources */,
+				11AF5CA21BA29800002A8959 /* DVElement+XML.m in Sources */,
 				1139150E1B9D90FF006CF7EC /* DVObjectElement.m in Sources */,
 				113914F61B9D721D006CF7EC /* DVCanvasElement.m in Sources */,
 				113914B51B9D36AD006CF7EC /* DVElement.m in Sources */,
@@ -571,6 +611,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -591,6 +632,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_object;
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};

@@ -12,6 +12,7 @@ enum DVTouchEventType {
     DVTouchEventTypeBegin,DVTouchEventTypeMoved,DVTouchEventTypeEnded,DVTouchEventTypeCanceled
 };
 
+// touch
 @interface DVTouchEvent : DVEvent
 
 @property(nonatomic,strong) NSString * touchId;

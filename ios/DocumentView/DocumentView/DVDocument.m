@@ -39,6 +39,10 @@
         elementClass = [DVElement class];
     }
     
+    if(elementId == nil){
+        elementId = [self newElementId];
+    }
+    
     DVElement * el = [[elementClass alloc] initWithName:name attributes:attributes];
     
     el.elementId = elementId;

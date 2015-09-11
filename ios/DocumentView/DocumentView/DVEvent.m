@@ -66,7 +66,7 @@
                         break;
                     }
                 }
-                else if([fn.delegate respondsToSelector:@selector(dispatcher:event:)]) {
+                else if(fn.delegate) {
                     if( ! [fn.delegate dispatcher:self event:event] ) {
                         break;
                     }

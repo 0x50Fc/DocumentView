@@ -97,7 +97,7 @@
         
         _layoutElement = [element elementByClass:[DVLayoutElement class]];
         
-        if(! [_layoutElement isLayouted]) {
+        if(! [_layoutElement isLayouted] && _allowLayoutElement) {
             [_layoutElement layout:self.bounds.size];
         }
         
@@ -226,11 +226,8 @@
                 object.objectClass = objectClass;
                 object.reuse = reuse;
                 
-                if(object.objectClass == [CALayer class] || [object.objectClass isSubclassOfClass:[CALayer class]]) {
-                    object.object = [object.objectClass layer];
-                }
-                else if(object.objectClass == [UIView class] || [object.objectClass isSubclassOfClass:[UIView class]]) {
-                    object.object = [[object.objectClass alloc] initWithFrame:CGRectZero];
+                if(object.objectClass == [UIView class] || [object.objectClass isSubclassOfClass:[UIView class]]) {
+                    object.object = [[object.objectClass alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
                 }
                 else {
                     object.object = [[object.objectClass alloc] init];
@@ -244,8 +241,6 @@
             
             [_elementObjects setObject:object forKey:elementId];
             
-            [object.object setObjectElement:(DVObjectElement *) element];
-
             if([object.object isKindOfClass:[CALayer class]]) {
             
                 CALayer * layer = (CALayer *) object.object;
@@ -334,10 +329,12 @@
                 
             }
             
+            [object.object setObjectElement:(DVObjectElement *) element isChanged:NO];
+            
             if([object.object isKindOfClass:[DVDocumentView class]]) {
                 [(DVDocumentView *)object.object setElement:element];
             }
-            
+
             [DVElement sendEvent:[DVActionEvent actionEvent:@"visible" element:element] element:element];
             
         }
@@ -354,14 +351,19 @@
         
         DVDocumentViewReuseObject * object = [_elementObjects valueForKey:[(DVElement *) event.target elementId]];
         
-        [object.object setObjectElement:(DVObjectElement *) event.target];
+        [object.object setObjectElement:(DVObjectElement *) event.target isChanged:YES];
         
         event.cancelBubble = YES;
         
     }
     
     if([event isKindOfClass:[DVElementEvent class]]) {
-        [self setNeedsLayout];
+        
+        [_layoutElement layout];
+        
+        [self reloadData];
+        
+        event.cancelBubble = YES;
     }
     
     return YES;
@@ -391,6 +393,8 @@
             
             [DVElement sendEvent:e element:el];
             
+            [self touchesBegan:touch withEvent:event element:el];
+            
         }
     }
     
@@ -415,6 +419,8 @@
             e.object = [[_elementObjects valueForKey:el.elementId] object];
             
             [DVElement sendEvent:e element:el];
+            
+            [self touchesMoved:touch withEvent:event element:el];
             
         }
         
@@ -441,6 +447,7 @@
             
             [DVElement sendEvent:e element:el];
             
+            [self touchesEnded:touch withEvent:event element:el];
         }
         
     }
@@ -466,6 +473,8 @@
             
             [DVElement sendEvent:e element:el];
             
+            [self touchesCancelled:touch withEvent:event element:el];
+            
         }
         
     }
@@ -473,17 +482,13 @@
     [super touchesCancelled:touches withEvent:event];
 }
 
-- (void)layoutSubviews {
-    
-    if(! [_layoutElement isLayouted]) {
-        [_layoutElement layout:self.bounds.size];
-    }
-    
-}
 
--(void) setObjectElement:(DVObjectElement *)element {
-    [super setObjectElement:element];
-    self.pagingEnabled = [element booleanValueForKey:@"paging-enabled" defaultValue:NO];
+-(void) setObjectElement:(DVObjectElement *)element isChanged:(BOOL)isChanged {
+    [super setObjectElement:element isChanged:isChanged];
+    self.pagingEnabled = [element booleanValueForKey:@"view-paging-enabled" defaultValue:NO];
+    self.scrollEnabled = [element booleanValueForKey:@"view-scroll-enabled" defaultValue:NO];
+    self.bounces = [element booleanValueForKey:@"view-bounces-enabled" defaultValue:NO];
+    self.scrollsToTop = [element booleanValueForKey:@"view-scrolls-to-top" defaultValue:NO];
 }
 
 -(void) sizeToFit {
@@ -499,6 +504,82 @@
     r.size = size;
     
     [self setFrame:r];
+    
+}
+
+-(void) setFrame:(CGRect)frame{
+    [super setFrame:frame];
+    
+    if(_allowLayoutElement) {
+        if(! [_layoutElement isLayouted]
+           || !CGSizeEqualToSize(_layoutElement.layoutSize, self.bounds.size)) {
+            [_layoutElement layout:self.bounds.size];
+            [self setContentSize:_layoutElement.contentSize];
+        }
+    }
+    
+}
+
+-(void) setBounds:(CGRect)bounds{
+    [super setBounds:bounds];
+    
+    if(_allowLayoutElement) {
+        if(! [_layoutElement isLayouted]
+           || !CGSizeEqualToSize(_layoutElement.layoutSize, self.bounds.size)) {
+            [_layoutElement layout:self.bounds.size];
+            [self setContentSize:_layoutElement.contentSize];
+        }
+    }
+}
+
+-(DVDocumentView *) documentViewWithElement:(DVElement *) element {
+    
+    if(element == nil) {
+        return nil;
+    }
+    
+    if(element == _element) {
+        return self;
+    }
+    
+    DVDocumentViewReuseObject * reuseObject = [_elementObjects objectForKey:element.elementId];
+    
+    if([[reuseObject object] isKindOfClass:[DVDocumentView class]]) {
+        return [reuseObject object];
+    }
+    
+    return [self documentViewWithElement: element.parent ];
+    
+}
+
+-(id) elementObjectWithElement:(DVElement *) element {
+    
+    if(element == _element) {
+        return self;
+    }
+    
+    DVDocumentView * documentView = [self documentViewWithElement: element];
+    
+    if(documentView) {
+        return [[documentView->_elementObjects valueForKey:element.elementId] object];
+    }
+    
+    return nil;
+}
+
+-(void) touchesBegan:(UITouch *)touche withEvent:(UIEvent *)event element:(DVElement *) element {
+    
+}
+
+-(void) touchesMoved:(UITouch *)touche withEvent:(UIEvent *)event element:(DVElement *) element {
+    
+}
+
+-(void) touchesEnded:(UITouch *)touche withEvent:(UIEvent *)event element:(DVElement *) element {
+    
+}
+
+-(void) touchesCancelled:(UITouch *)touche withEvent:(UIEvent *)event element:(DVElement *) element{
     
 }
 

@@ -45,6 +45,9 @@
             if([src hasPrefix:@"@"]) {
                 self.image = [UIImage imageNamed:[src substringFromIndex:1]];
             }
+            else if([src hasPrefix:@"http://"] || [src hasPrefix:@"https://"]) {
+                
+            }
             else {
                 
                 NSFileManager * fileManager = [NSFileManager defaultManager];

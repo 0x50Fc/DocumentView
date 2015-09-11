@@ -19,6 +19,7 @@
 @property(nonatomic,readonly,getter=isNeedsDisplay) BOOL needsDisplay;
 @property(nonatomic,readonly) id contents;
 @property(nonatomic,readonly) BOOL clips;
+@property(nonatomic,readonly) double opacity;
 
 -(void) drawInContext:(CGContextRef) context;
 

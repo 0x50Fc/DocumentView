@@ -8,15 +8,42 @@
 
 #import "DVViewElement.h"
 #import "DVElement+Value.h"
+#import "DVTransformElement.h"
+#import "DVAnimationElement.h"
 
 @implementation UIView (DVObjectElement)
 
--(void) setObjectElement:(DVViewElement *)element {
+-(void) setObjectElement:(DVViewElement *)element isChanged:(BOOL)isChanged {
+    
     self.layer.borderColor = [[element borderColor] CGColor];
     self.layer.borderWidth = [element borderWidth];
     self.layer.cornerRadius = [element borderRadius];
     self.backgroundColor = [element backgroundColor];
     self.clipsToBounds = [element clips];
+    
+    [self.layer removeAllAnimations];
+    
+    CATransform3D transform = CATransform3DIdentity;
+    
+    DVElement * p = element.firstChild;
+    
+    while (p) {
+        
+        if([p isKindOfClass:[DVTransformElement class]]) {
+            transform = [(DVTransformElement *) p transform:transform];
+        }
+        else if(! isChanged && [p isKindOfClass:[DVAnimationElement class]]) {
+            CABasicAnimation * anim = [(DVAnimationElement *) p animation];
+            
+            if(anim) {
+                [self.layer addAnimation:anim forKey:anim.keyPath];
+            }
+        }
+        
+        p = p.nextSibling;
+    }
+    
+    self.layer.transform = transform;
 }
 
 @end

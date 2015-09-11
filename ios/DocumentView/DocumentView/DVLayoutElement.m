@@ -9,6 +9,18 @@
 #import "DVLayoutElement.h"
 #import "DVElement+Value.h"
 
+@implementation DVLayoutEvent
+
++(id) layoutEvent:(DVElement *) target eventType:(enum DVLayoutEventType) eventType {
+    DVLayoutEvent * event = [[DVLayoutEvent alloc] init];
+    event.name = @"layout";
+    event.target = target;
+    event.eventType = eventType;
+    return event;
+}
+
+@end
+
 @implementation DVLayoutElement
 
 
@@ -16,10 +28,17 @@
 @synthesize contentSize = _contentSize;
 @synthesize layouted = _layouted;
 @synthesize layoutSize = _layoutSize;
+@synthesize layouting = _layouting;
 
--(void) setFrame:(CGRect)frame{
+-(void) setFrame:(CGRect)frame {
+    
+    if(! CGSizeEqualToSize(_frame.size, frame.size) && ! _layouting) {
+        _layouted = NO;
+        [DVElement sendEvent:[DVLayoutEvent layoutEvent:self eventType:DVLayoutEventTypeSizeChanged] element:self];
+    }
+    
     _frame = frame;
-    _layouted = YES;
+    
 }
 
 -(CGSize) layoutChildren:(UIEdgeInsets) padding{
@@ -221,15 +240,17 @@
 
 -(CGSize) layout:(CGSize) size{
     
-    _layoutSize = size;
+    _layouting = YES;
     
-    [self setFrame:CGRectMake(0, 0
+    _frame = CGRectMake(0, 0
                               , [self doubleValueForKey:@"width" defaultValue:0 of:size.width]
-                              , [self doubleValueForKey:@"height" defaultValue:0 of:size.height])];
+                              , [self doubleValueForKey:@"height" defaultValue:0 of:size.height]);
+    
+    _layoutSize = size;
+    _layouted = YES;
     
     UIEdgeInsets padding = [self padding];
-    
-    
+
     if(_frame.size.width == MAXFLOAT || _frame.size.height == MAXFLOAT){
         
         CGSize contentSize = [self layoutChildren:padding];
@@ -264,13 +285,18 @@
             }
         }
         
+        _layouting = NO;
+        
         return contentSize;
         
     }
     else {
+        
+        _layouting = NO;
+        
         return [self layoutChildren:padding];
     }
-    
+
 }
 
 -(CGSize) layout{
@@ -305,6 +331,11 @@
     
     if([event isKindOfClass:[DVElementEvent class]]) {
         _layouted = NO;
+    }
+    else if([event isKindOfClass:[DVLayoutEvent class]]) {
+        if( ! _layouting ) {
+            _layouted = NO;
+        }
     }
     
     [super sendEvent:event];

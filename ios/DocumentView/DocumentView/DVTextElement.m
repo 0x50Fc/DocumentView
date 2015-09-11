@@ -208,9 +208,16 @@
     
     CGSize size = self.frame.size;
     
+    UIEdgeInsets padding = [self padding];
+    
     CGContextSetTextMatrix(context , CGAffineTransformIdentity);
     CGContextTranslateCTM(context, 0, size.height);
     CGContextScaleCTM(context, 1.0, -1.0);
+    
+    CGContextTranslateCTM(context, padding.left , padding.top);
+    
+    size.width = size.width - padding.left - padding.right;
+    size.height = size.height - padding.top - padding.bottom ;
     
     [self.rich drawContext:context withSize:size];
 
@@ -225,11 +232,11 @@
         CGSize s = [self.rich contentSizeWithSize:r.size];
         
         if(r.size.width == MAXFLOAT){
-            r.size.width = s.width;
+            r.size.width = s.width + padding.left + padding.right;
         }
         
         if(r.size.height == MAXFLOAT){
-            r.size.height = s.height;
+            r.size.height = s.height + padding.top + padding.bottom;
         }
         
         [self setFrame:r];
@@ -342,7 +349,8 @@
 }
 
 -(BOOL) dispatchEvent:(DVEvent *)event{
-    return NO;
+    event.cancelDispatch = YES;
+    return [super dispatchEvent:event];
 }
 
 @end

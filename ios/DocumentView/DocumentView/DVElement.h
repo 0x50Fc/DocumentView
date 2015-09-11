@@ -15,10 +15,13 @@
 @class DVElement;
 
 enum DVElementEventType {
-    DVElementEventTypeAppend,DVElementEventTypeBefore,DVElementEventTypeAfter,DVElementEventTypeRemove
+    DVElementEventTypeAppend
+    ,DVElementEventTypeBefore
+    ,DVElementEventTypeAfter
+    ,DVElementEventTypeRemove
 };
 
-// 节点时间 element
+// 节点事件 element
 @interface DVElementEvent : DVEvent
 
 @property(nonatomic,assign) enum DVElementEventType eventType;
@@ -86,6 +89,8 @@ enum DVElementEventType {
 -(id) remove;
 
 -(id) elementByClass:(Class) elementClass;
+
+-(NSArray *) elementsByClass:(Class) elementClass;
 
 +(DVElement *) dispatchEvent:(DVEvent *) event element:(DVElement *) element;
 

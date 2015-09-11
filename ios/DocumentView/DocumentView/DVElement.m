@@ -391,6 +391,36 @@
     return nil;
 }
 
++(void) elementsByClass:(Class) elementClass element:(DVElement *) element toElements:(NSMutableArray * ) elements {
+    
+    DVElement * p = element.firstChild;
+    
+    while (p) {
+        
+        if([p isKindOfClass:elementClass]) {
+            [elements addObject:p];
+        }
+        
+        p = p.nextSibling;
+    }
+    
+    p = element.firstChild;
+    
+    while (p) {
+        
+        [DVElement elementsByClass:elementClass element:p toElements:elements];
+        
+        p = p.nextSibling;
+    }
+    
+}
+
+-(NSArray *) elementsByClass:(Class) elementClass {
+    NSMutableArray * elements = [NSMutableArray arrayWithCapacity:4];
+    [DVElement elementsByClass:elementClass element:self toElements:elements];
+    return elements;
+}
+
 -(NSString *) elementId {
     
     if(_elementId == nil && _document != nil) {
@@ -415,22 +445,27 @@
     
     if([element dispatchEvent:event]) {
         
-        DVElement * p = element.lastChild, * r;
-        
-        while (p) {
+        if(! event.cancelDispatch) {
             
-            r = [DVElement dispatchEvent:event element:p];
+            DVElement * p = element.lastChild, * r;
             
-            if(r) {
-                return r;
+            while (p) {
+                
+                r = [DVElement dispatchEvent:event element:p];
+                
+                if(r) {
+                    return r;
+                }
+                
+                p = p.prevSibling;
             }
             
-            p = p.prevSibling;
         }
         
+        return element;
     }
     
-    return element;
+    return nil;
 }
 
 

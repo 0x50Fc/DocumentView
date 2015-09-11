@@ -8,20 +8,51 @@
 
 #import "DVCanvasElement.h"
 #import "DVElement+Value.h"
-
+#import "DVTransformElement.h"
+#import "DVAnimationElement.h"
 
 @implementation CALayer (DVObjectElement)
 
--(void) setObjectElement:(DVCanvasElement *)element {
+-(void) setObjectElement:(DVCanvasElement *)element isChanged:(BOOL)isChanged {
+    
     self.borderColor = [[element borderColor] CGColor];
     self.borderWidth = [element borderWidth];
     self.masksToBounds = [element clips];
     self.cornerRadius = [element borderRadius];
     self.backgroundColor = [[element backgroundColor] CGColor];
-    self.contents = [element contents];
+    self.opacity = [self opacity];
+    
+    if(element.contents) {
+        self.contents = [element contents];
+    }
+
     if([element isNeedsDisplay]) {
         [self setNeedsDisplay];
     }
+    
+    [self removeAllAnimations];
+    
+    CATransform3D transform = CATransform3DIdentity;
+    
+    DVElement * p = element.firstChild;
+    
+    while (p) {
+ 
+        if([p isKindOfClass:[DVTransformElement class]]) {
+            transform = [(DVTransformElement *) p transform:transform];
+        }
+        else if( ! isChanged && [p isKindOfClass:[DVAnimationElement class]]) {
+            CABasicAnimation * anim = [(DVAnimationElement *) p animation];
+            if(anim) {
+                [self addAnimation:anim forKey:anim.keyPath];
+            }
+        }
+        
+        p = p.nextSibling;
+    }
+    
+    self.transform = transform;
+    
 }
 
 @end
@@ -57,6 +88,10 @@
 
 -(double) borderWidth{
     return [self doubleValueForKey:@"border-width" defaultValue:0];
+}
+
+-(double) opacity {
+    return [self doubleValueForKey:@"opacity" defaultValue:1 of:1.0];
 }
 
 -(id) attr:(NSString *) key value:(NSString *) value{

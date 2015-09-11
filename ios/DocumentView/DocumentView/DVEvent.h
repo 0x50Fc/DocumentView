@@ -16,6 +16,7 @@
 @property(nonatomic,strong) NSString * name;            // 事件名称
 @property(nonatomic,strong) DVEventDispatcher * target; // 目标
 @property(nonatomic,assign) BOOL cancelBubble;          // 取消向上级节点发送事件
+@property(nonatomic,assign) BOOL cancelDispatch;        // 取消向下分派
 
 +(id) eventWithName:(NSString *) name target:(DVEventDispatcher *) target;
 

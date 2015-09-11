@@ -26,6 +26,6 @@
 
 @interface NSObject (DVObjectElement)
 
--(void) setObjectElement:(DVObjectElement *) element;
+-(void) setObjectElement:(DVObjectElement *) element isChanged:(BOOL) isChanged;
 
 @end

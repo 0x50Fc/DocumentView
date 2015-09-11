@@ -15,6 +15,7 @@
     
     DVTouchEvent * event = [[DVTouchEvent alloc] init];
     
+    event.name = @"touch";
     event.touchId = touchId;
     event.touchX = touchX;
     event.touchY = touchY;

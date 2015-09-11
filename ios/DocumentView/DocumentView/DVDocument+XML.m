@@ -78,15 +78,24 @@ static void DVDocument_XML_endElementSAXFunc (void *ctx,
     
     NSString * n = [NSString stringWithUTF8String:(char *) name];
     
-    if([parser.current.name isEqualToString:n]) {
+    while(parser.current) {
         
-        if(parser.current.firstChild == nil && [parser.textContent length]) {
-            parser.current.textContent = [[NSString alloc] initWithData:[parser textContent] encoding:NSUTF8StringEncoding];
+        if([parser.current.name isEqualToString:n]){
+            
+            if(parser.current.firstChild == nil && [parser.textContent length]) {
+                parser.current.textContent = [[NSString alloc] initWithData:[parser textContent] encoding:NSUTF8StringEncoding];
+            }
+            
+            [parser.textContent setLength:0];
+            
+            parser.current = parser.current.parent;
+            
+            break;
         }
-        
-        [parser.textContent setLength:0];
-        
-        parser.current = parser.current.parent;
+        else {
+            [parser.textContent setLength:0];
+            parser.current = parser.current.parent;
+        }
     }
 
 
@@ -141,7 +150,7 @@ static void DVDocument_XML_errorSAXFunc (void *ctx,
 
 -(DVElement *) elementWithXMLContent:(NSString *) xmlContent {
     
-    struct _xmlSAXHandler handler = {
+    static struct _xmlSAXHandler handler = {
         NULL,
         NULL,
         NULL,

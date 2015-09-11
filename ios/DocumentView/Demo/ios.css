@@ -20,8 +20,20 @@ page {
     element-class:DVViewElement;
     object-class:DVDocumentView;
     object-detach-children:true;
-    paging-enabled:true;
+    view-paging-enabled:true;
+    view-scroll-enabled:true;
+    view-bounces-enabled:true;
     layout:flow-x;
+}
+
+vpage {
+    element-class:DVViewElement;
+    object-class:DVDocumentView;
+    object-detach-children:true;
+    view-paging-enabled:true;
+    view-scroll-enabled:true;
+    view-bounces-enabled:true;
+    layout:flow;
 }
 
 text {
