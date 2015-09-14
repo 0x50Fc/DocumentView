@@ -329,7 +329,7 @@
                 
             }
             
-            [object.object setObjectElement:(DVObjectElement *) element changedTypes:DVObjectElementChangedCanvas | DVObjectElementChangedAnimation];
+            [object.object setObjectElement:(DVObjectElement *) element changedTypes:DVObjectElementChangedCanvas | DVObjectElementChangedAnimation | DVObjectElementChangedTransform ];
             
             if([object.object isKindOfClass:[DVDocumentView class]]) {
                 [(DVDocumentView *)object.object setElement:element];
@@ -373,29 +373,8 @@
     
     for (UITouch * touch in touches) {
         
-        NSString * touchId = [NSString stringWithFormat:@"0x%lx",(long) touch];
+        [self touchesBegan:touch];
         
-        CGPoint p = [touch locationInView:self];
-        
-        DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeBegin element:_element];
-        
-        DVElement * el = [DVElement dispatchEvent:e element:_element];
-        
-        if(el) {
-            
-            e.object = [[_elementObjects valueForKey:el.elementId] object];
-            
-            if(_touchElements  == nil) {
-                _touchElements = [[NSMutableDictionary alloc] initWithCapacity:4];
-            }
-            
-            [_touchElements setValue:el forKey:touchId];
-            
-            [DVElement sendEvent:e element:el];
-            
-            [self touchesBegan:touch withEvent:event element:el];
-            
-        }
     }
     
     [super touchesBegan:touches withEvent:event];
@@ -405,25 +384,7 @@
     
     
     for (UITouch * touch in touches) {
-        
-        NSString * touchId = [NSString stringWithFormat:@"0x%lx",(long) touch];
-        
-        DVElement * el = [_touchElements objectForKey:touchId];
-        
-        if(el) {
-            
-            CGPoint p = [touch locationInView:self];
-            
-            DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeMoved element:_element];
-            
-            e.object = [[_elementObjects valueForKey:el.elementId] object];
-            
-            [DVElement sendEvent:e element:el];
-            
-            [self touchesMoved:touch withEvent:event element:el];
-            
-        }
-        
+        [self touchesMoved:touch];
     }
     
     [super touchesMoved:touches withEvent:event];
@@ -433,22 +394,7 @@
     
     for (UITouch * touch in touches) {
         
-        NSString * touchId = [NSString stringWithFormat:@"0x%lx",(long) touch];
-        
-        DVElement * el = [_touchElements objectForKey:touchId];
-        
-        if(el) {
-            
-            CGPoint p = [touch locationInView:self];
-            
-            DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeEnded element:_element];
-            
-            e.object = [[_elementObjects valueForKey:el.elementId] object];
-            
-            [DVElement sendEvent:e element:el];
-            
-            [self touchesEnded:touch withEvent:event element:el];
-        }
+        [self touchesEnded:touch];
         
     }
     
@@ -459,23 +405,7 @@
     
     for (UITouch * touch in touches) {
         
-        NSString * touchId = [NSString stringWithFormat:@"0x%lx",(long) touch];
-        
-        DVElement * el = [_touchElements objectForKey:touchId];
-        
-        if(el) {
-            
-            CGPoint p = [touch locationInView:self];
-            
-            DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeCanceled element:_element];
-            
-            e.object = [[_elementObjects valueForKey:el.elementId] object];
-            
-            [DVElement sendEvent:e element:el];
-            
-            [self touchesCancelled:touch withEvent:event element:el];
-            
-        }
+        [self touchesCancelled:touch];
         
     }
     
@@ -560,27 +490,116 @@
     
     DVDocumentView * documentView = [self documentViewWithElement: element];
     
-    if(documentView) {
-        return [[documentView->_elementObjects valueForKey:element.elementId] object];
+    while(documentView) {
+        
+        DVDocumentView * docView = [documentView documentViewWithElement:element];
+        
+        if(docView == documentView) {
+            
+            if(documentView.element == element) {
+                return documentView;
+            }
+            
+            return [[documentView->_elementObjects valueForKey:element.elementId] object];
+        }
+        else {
+            documentView = docView;
+        }
+        
+        
     }
     
     return nil;
 }
 
--(void) touchesBegan:(UITouch *)touche withEvent:(UIEvent *)event element:(DVElement *) element {
+-(DVElement *) touchesBegan:(UITouch *) touche {
     
+    NSString * touchId = [NSString stringWithFormat:@"0x%lx",(long) touche];
+    
+    CGPoint p = [touche locationInView:self];
+    
+    DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeBegin element:_element];
+    
+    DVElement * el = [DVElement dispatchEvent:e element:_element];
+    
+    if(el) {
+        
+        e.object = [[_elementObjects valueForKey:el.elementId] object];
+        
+        if(_touchElements  == nil) {
+            _touchElements = [[NSMutableDictionary alloc] initWithCapacity:4];
+        }
+        
+        [_touchElements setValue:el forKey:touchId];
+        
+        [DVElement sendEvent:e element:el];
+       
+    }
+    
+    return el;
 }
 
--(void) touchesMoved:(UITouch *)touche withEvent:(UIEvent *)event element:(DVElement *) element {
+-(DVElement *) touchesMoved:(UITouch *) touche {
     
+    NSString * touchId = [NSString stringWithFormat:@"0x%lx",(long) touche];
+    
+    DVElement * el = [_touchElements objectForKey:touchId];
+    
+    if(el) {
+        
+        CGPoint p = [touche locationInView:self];
+        
+        DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeMoved element:_element];
+        
+        e.object = [[_elementObjects valueForKey:el.elementId] object];
+        
+        [DVElement sendEvent:e element:el];
+        
+    }
+
+    return el;
 }
 
--(void) touchesEnded:(UITouch *)touche withEvent:(UIEvent *)event element:(DVElement *) element {
+-(DVElement *) touchesEnded:(UITouch *) touche {
     
+    NSString * touchId = [NSString stringWithFormat:@"0x%lx",(long) touche];
+    
+    DVElement * el = [_touchElements objectForKey:touchId];
+    
+    if(el) {
+        
+        CGPoint p = [touche locationInView:self];
+        
+        DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeEnded element:_element];
+        
+        e.object = [[_elementObjects valueForKey:el.elementId] object];
+        
+        [DVElement sendEvent:e element:el];
+        
+    }
+
+    return el;
 }
 
--(void) touchesCancelled:(UITouch *)touche withEvent:(UIEvent *)event element:(DVElement *) element{
+-(DVElement *) touchesCancelled:(UITouch *) touche {
     
+    NSString * touchId = [NSString stringWithFormat:@"0x%lx",(long) touche];
+    
+    DVElement * el = [_touchElements objectForKey:touchId];
+    
+    if(el) {
+        
+        CGPoint p = [touche locationInView:self];
+        
+        DVTouchEvent * e = [DVTouchEvent touchEvent:touchId touchX:p.x touchY:p.y eventType:DVTouchEventTypeCanceled element:_element];
+        
+        e.object = [[_elementObjects valueForKey:el.elementId] object];
+        
+        [DVElement sendEvent:e element:el];
+        
+    }
+    
+    return el;
 }
 
 @end

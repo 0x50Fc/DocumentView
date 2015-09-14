@@ -22,30 +22,44 @@
     self.clipsToBounds = [element clips];
     
     if(changedTypes & DVObjectElementChangedAnimation) {
+        
         [self.layer removeAllAnimations];
-    }
-    
-    CATransform3D transform = CATransform3DIdentity;
-    
-    DVElement * p = element.firstChild;
-    
-    while (p) {
         
-        if([p isKindOfClass:[DVTransformElement class]]) {
-            transform = [(DVTransformElement *) p transform:transform];
-        }
-        else if((changedTypes & DVObjectElementChangedAnimation) && [p isKindOfClass:[DVAnimationElement class]]) {
-            CABasicAnimation * anim = [(DVAnimationElement *) p animation];
+        DVElement * p = element.firstChild;
+        
+        while (p) {
             
-            if(anim) {
-                [self.layer addAnimation:anim forKey:anim.keyPath];
+            if([p isKindOfClass:[DVAnimationElement class]]) {
+                CABasicAnimation * anim = [(DVAnimationElement *) p animation];
+                
+                if(anim) {
+                    [self.layer addAnimation:anim forKey:anim.keyPath];
+                }
             }
+            
+            p = p.nextSibling;
         }
         
-        p = p.nextSibling;
     }
     
-    self.layer.transform = transform;
+    if(changedTypes & DVObjectElementChangedTransform) {
+        
+        CATransform3D transform = CATransform3DIdentity;
+        
+        DVElement * p = element.firstChild;
+        
+        while (p) {
+            
+            if([p isKindOfClass:[DVTransformElement class]]) {
+                transform = [(DVTransformElement *) p transform:transform];
+            }
+        
+            p = p.nextSibling;
+        }
+        
+        self.layer.transform = transform;
+        
+    }
 }
 
 @end

@@ -18,12 +18,12 @@
 
 -(id) elementObjectWithElement:(DVElement *) element;
 
--(void) touchesBegan:(UITouch *) touche withEvent:(UIEvent *)event element:(DVElement *) element;
+-(DVElement *) touchesBegan:(UITouch *) touche;
 
--(void) touchesMoved:(UITouch *) touche withEvent:(UIEvent *)event element:(DVElement *) element;
+-(DVElement *) touchesMoved:(UITouch *) touche;
 
--(void) touchesEnded:(UITouch *) touche withEvent:(UIEvent *)event element:(DVElement *) element;
+-(DVElement *) touchesEnded:(UITouch *) touche;
 
--(void) touchesCancelled:(UITouch *) touche withEvent:(UIEvent *)event element:(DVElement *) element;
+-(DVElement *) touchesCancelled:(UITouch *) touche;
 
 @end

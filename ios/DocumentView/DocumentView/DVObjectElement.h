@@ -15,6 +15,7 @@ typedef NSUInteger DVObjectElementChangedType;
 enum {
     DVObjectElementChangedCanvas = 1 << 0,
     DVObjectElementChangedAnimation = 1 << 1,
+    DVObjectElementChangedTransform = 1 << 2,
 };
 
 @interface DVObjectEvent : DVEvent

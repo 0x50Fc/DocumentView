@@ -488,5 +488,9 @@
     return [self attr:@"class"];
 }
 
+-(BOOL) dispatchEvent:(DVEvent *) event {
+    event.cancelDispatch = YES;
+    return NO;
+}
 
 @end

@@ -15,6 +15,7 @@
 #import <DocumentView/DVElement+HTML.h>
 #import <DocumentView/DVDocument+XML.h>
 #import <DocumentView/DVDocument+HTML.h>
+#import <DocumentView/DVElement+Text.h>
 #import <DocumentView/DVElement+Value.h>
 #import <DocumentView/DVLayoutElement.h>
 #import <DocumentView/DVObjectElement.h>
@@ -25,3 +26,6 @@
 #import <DocumentView/UIView+Visible.h>
 #import <DocumentView/DVTransformElement.h>
 #import <DocumentView/DVAnimationElement.h>
+#import <DocumentView/DVElement+PasteBoard.h>
+#import <DocumentView/DVDocument+PasteBoard.h>
+

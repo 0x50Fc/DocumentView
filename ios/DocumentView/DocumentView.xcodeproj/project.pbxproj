@@ -63,6 +63,12 @@
 		1139156D1B9EB195006CF7EC /* logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1139156C1B9EB195006CF7EC /* logo.jpg */; };
 		1139156F1B9EB65A006CF7EC /* ef_logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 1139156E1B9EB65A006CF7EC /* ef_logo.jpg */; };
 		113915711B9EC281006CF7EC /* demo.css in Resources */ = {isa = PBXBuildFile; fileRef = 113915701B9EC281006CF7EC /* demo.css */; };
+		113B5CD41BA522DE0069F635 /* DVElement+Text.h in Headers */ = {isa = PBXBuildFile; fileRef = 113B5CD21BA522DE0069F635 /* DVElement+Text.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		113B5CD51BA522DE0069F635 /* DVElement+Text.m in Sources */ = {isa = PBXBuildFile; fileRef = 113B5CD31BA522DE0069F635 /* DVElement+Text.m */; };
+		113B5CD81BA5240F0069F635 /* DVElement+PasteBoard.h in Headers */ = {isa = PBXBuildFile; fileRef = 113B5CD61BA5240F0069F635 /* DVElement+PasteBoard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		113B5CD91BA5240F0069F635 /* DVElement+PasteBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 113B5CD71BA5240F0069F635 /* DVElement+PasteBoard.m */; };
+		113B5CDC1BA525100069F635 /* DVDocument+PasteBoard.h in Headers */ = {isa = PBXBuildFile; fileRef = 113B5CDA1BA525100069F635 /* DVDocument+PasteBoard.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		113B5CDD1BA525100069F635 /* DVDocument+PasteBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 113B5CDB1BA525100069F635 /* DVDocument+PasteBoard.m */; };
 		11AF5CA11BA29800002A8959 /* DVElement+XML.h in Headers */ = {isa = PBXBuildFile; fileRef = 11AF5C9F1BA29800002A8959 /* DVElement+XML.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		11AF5CA21BA29800002A8959 /* DVElement+XML.m in Sources */ = {isa = PBXBuildFile; fileRef = 11AF5CA01BA29800002A8959 /* DVElement+XML.m */; };
 		11AF5CA51BA29CDC002A8959 /* DVElement+HTML.h in Headers */ = {isa = PBXBuildFile; fileRef = 11AF5CA31BA29CDC002A8959 /* DVElement+HTML.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -138,6 +144,12 @@
 		1139156C1B9EB195006CF7EC /* logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = logo.jpg; sourceTree = "<group>"; };
 		1139156E1B9EB65A006CF7EC /* ef_logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = ef_logo.jpg; sourceTree = "<group>"; };
 		113915701B9EC281006CF7EC /* demo.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = demo.css; sourceTree = "<group>"; };
+		113B5CD21BA522DE0069F635 /* DVElement+Text.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVElement+Text.h"; sourceTree = "<group>"; };
+		113B5CD31BA522DE0069F635 /* DVElement+Text.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVElement+Text.m"; sourceTree = "<group>"; };
+		113B5CD61BA5240F0069F635 /* DVElement+PasteBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVElement+PasteBoard.h"; sourceTree = "<group>"; };
+		113B5CD71BA5240F0069F635 /* DVElement+PasteBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVElement+PasteBoard.m"; sourceTree = "<group>"; };
+		113B5CDA1BA525100069F635 /* DVDocument+PasteBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVDocument+PasteBoard.h"; sourceTree = "<group>"; };
+		113B5CDB1BA525100069F635 /* DVDocument+PasteBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVDocument+PasteBoard.m"; sourceTree = "<group>"; };
 		11AF5C9F1BA29800002A8959 /* DVElement+XML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVElement+XML.h"; sourceTree = "<group>"; };
 		11AF5CA01BA29800002A8959 /* DVElement+XML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "DVElement+XML.m"; sourceTree = "<group>"; };
 		11AF5CA31BA29CDC002A8959 /* DVElement+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "DVElement+HTML.h"; sourceTree = "<group>"; };
@@ -233,6 +245,12 @@
 				11AF5CA01BA29800002A8959 /* DVElement+XML.m */,
 				11AF5CA31BA29CDC002A8959 /* DVElement+HTML.h */,
 				11AF5CA41BA29CDC002A8959 /* DVElement+HTML.m */,
+				113B5CD21BA522DE0069F635 /* DVElement+Text.h */,
+				113B5CD31BA522DE0069F635 /* DVElement+Text.m */,
+				113B5CD61BA5240F0069F635 /* DVElement+PasteBoard.h */,
+				113B5CD71BA5240F0069F635 /* DVElement+PasteBoard.m */,
+				113B5CDA1BA525100069F635 /* DVDocument+PasteBoard.h */,
+				113B5CDB1BA525100069F635 /* DVDocument+PasteBoard.m */,
 				113914EF1B9D6F6E006CF7EC /* DVElement+Value.h */,
 				113914F01B9D6F6E006CF7EC /* DVElement+Value.m */,
 				113915031B9D800F006CF7EC /* DVDocumentView.h */,
@@ -321,6 +339,8 @@
 				113914BC1B9D492A006CF7EC /* DVStyleSheet.h in Headers */,
 				11AF5CA11BA29800002A8959 /* DVElement+XML.h in Headers */,
 				11AF5CA91BA2B149002A8959 /* UIView+Visible.h in Headers */,
+				113B5CDC1BA525100069F635 /* DVDocument+PasteBoard.h in Headers */,
+				113B5CD41BA522DE0069F635 /* DVElement+Text.h in Headers */,
 				1139149C1B9D3425006CF7EC /* DocumentView.h in Headers */,
 				113914DC1B9D5834006CF7EC /* DVEvent.h in Headers */,
 				113915541B9DA779006CF7EC /* VTRichImageElement.h in Headers */,
@@ -328,6 +348,7 @@
 				113914D41B9D5218006CF7EC /* DVStyle.h in Headers */,
 				113914E81B9D61C7006CF7EC /* DVLayoutElement.h in Headers */,
 				113914F51B9D721D006CF7EC /* DVCanvasElement.h in Headers */,
+				113B5CD81BA5240F0069F635 /* DVElement+PasteBoard.h in Headers */,
 				113914D01B9D4A86006CF7EC /* DVDocument+XML.h in Headers */,
 				113914B41B9D36AD006CF7EC /* DVElement.h in Headers */,
 				113915051B9D800F006CF7EC /* DVDocumentView.h in Headers */,
@@ -456,9 +477,12 @@
 				113915481B9DA54D006CF7EC /* DVTextElement.m in Sources */,
 				11AF5CAA1BA2B149002A8959 /* UIView+Visible.m in Sources */,
 				113915531B9DA779006CF7EC /* VTRich.m in Sources */,
+				113B5CD91BA5240F0069F635 /* DVElement+PasteBoard.m in Sources */,
+				113B5CD51BA522DE0069F635 /* DVElement+Text.m in Sources */,
 				113914C91B9D49F6006CF7EC /* DVDocument+HTML.m in Sources */,
 				113915551B9DA779006CF7EC /* VTRichImageElement.m in Sources */,
 				113914DD1B9D5834006CF7EC /* DVEvent.m in Sources */,
+				113B5CDD1BA525100069F635 /* DVDocument+PasteBoard.m in Sources */,
 				113914F21B9D6F6E006CF7EC /* DVElement+Value.m in Sources */,
 				113915061B9D800F006CF7EC /* DVDocumentView.m in Sources */,
 				1139156B1B9EA80E006CF7EC /* DVTouchEvent.m in Sources */,
